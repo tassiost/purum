@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<section style="display: flex; justify-content: center; align-items: center; min-height: 60vh; padding: 40px 0;">
+  <div style="width: 100%; max-width: 450px; border: 1px solid var(--border-muted); padding: 40px; background-color: var(--surface);">
+    <div style="border-bottom: 1px solid var(--border-muted); padding-bottom: 24px; margin-bottom: 32px; text-align: center;">
+      <span class="label-md text-muted" style="display: block; margin-bottom: 8px;">STITCH CMS</span>
+      <h1 class="headline-lg" style="font-size: 28px; line-height: 32px;">AUTHORIZATION</h1>
+    </div>
+
+    <% if (typeof errorMsg !== 'undefined' && errorMsg) { %>
+      <div class="alert alert-danger" style="margin-bottom: 24px;">
+        <%= errorMsg %>
+      </div>
+    <% } %>
+
+    <form action="/admin/login" method="POST">
+      <div class="form-group">
+        <label for="username">USERNAME</label>
+        <input type="text" id="username" name="username" required placeholder="ADMIN USERNAME" style="text-align: center;">
+      </div>
+      <div class="form-group" style="margin-bottom: 32px;">
+        <label for="password">PASSWORD</label>
+        <input type="password" id="password" name="password" required placeholder="ENTER PASSWORD" style="text-align: center;">
+      </div>
+      <button type="submit" class="btn" style="width: 100%;">ACCESS SYSTEM</button>
+    </form>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

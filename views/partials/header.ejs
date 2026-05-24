@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | <%= settings.artistName %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="/"><%= settings.artistName %></a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/" class="nav-link <%= activePage === 'home' ? 'active' : '' %>">Work</a></li>
+          <li><a href="/about" class="nav-link <%= activePage === 'about' ? 'active' : '' %>">About & Contact</a></li>
+          <% if (typeof user !== 'undefined' && user) { %>
+            <li><a href="/admin/dashboard" class="nav-link <%= activePage === 'admin' ? 'active' : '' %>">Admin</a></li>
+            <li><a href="/admin/logout" class="nav-link" style="color: #ffb4ab;">Logout</a></li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="site-content">

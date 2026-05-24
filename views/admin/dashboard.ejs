@@ -1,0 +1,225 @@
+<%- include('../partials/header') %>
+
+<section style="padding-top: 40px;">
+  <div class="admin-header-row">
+    <div>
+      <span class="label-md text-muted" style="display: block; margin-bottom: 8px;">STITCH ADMIN PANEL</span>
+      <h1 class="headline-lg">CONTROL PANEL</h1>
+    </div>
+    <div>
+      <a href="/admin/artwork/new" class="btn">+ ADD NEW ARTWORK</a>
+    </div>
+  </div>
+
+  <% if (typeof successMsg !== 'undefined' && successMsg) { %>
+    <div class="alert alert-success" style="margin-top: 24px;">
+      <%= successMsg %>
+    </div>
+  <% } %>
+  <% if (typeof errorMsg !== 'undefined' && errorMsg) { %>
+    <div class="alert alert-danger" style="margin-top: 24px;">
+      <%= errorMsg %>
+    </div>
+  <% } %>
+
+  <!-- Admin Sub-navigation tabs (using pure JS toggles) -->
+  <div style="display: flex; gap: 8px; margin-top: 40px; border-bottom: 1px solid var(--border-muted); padding-bottom: 16px;">
+    <button class="tab-btn btn btn-secondary active-tab" data-tab="artworks" style="font-size: 12px; padding: 10px 20px;">ARTWORKS</button>
+    <button class="tab-btn btn btn-secondary" data-tab="settings" style="font-size: 12px; padding: 10px 20px;">SITE SETTINGS</button>
+    <button class="tab-btn btn btn-secondary" data-tab="messages" style="font-size: 12px; padding: 10px 20px;">INCOMING MESSAGES (<%= messages.length %>)</button>
+  </div>
+
+  <!-- Tab Content: Artworks -->
+  <div id="tab-artworks" class="tab-content" style="margin-top: 32px;">
+    <h2 class="label-md" style="margin-bottom: 16px; color: var(--text-muted);">MANAGE PORTFOLIO ITEMS</h2>
+    <div class="admin-table-container">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>IMAGE</th>
+            <th>TITLE</th>
+            <th>CATEGORY</th>
+            <th>YEAR</th>
+            <th>FEATURED</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (artworks.length === 0) { %>
+            <tr>
+              <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 32px;">NO ARTWORKS FOUND. CREATED ONE TO START.</td>
+            </tr>
+          <% } else { %>
+            <% artworks.forEach(art => { %>
+              <tr>
+                <td style="width: 80px;">
+                  <img src="<%= art.imageUrl %>" alt="<%= art.title %>" style="width: 50px; height: 50px; object-fit: cover; border: 1px solid var(--border-muted); filter: grayscale(100%);">
+                </td>
+                <td style="font-weight: 700; font-family: var(--font-headline); letter-spacing: 0.05em;"><%= art.title %></td>
+                <td><span style="border: 1px solid var(--border-muted); padding: 2px 8px; font-size: 11px;"><%= art.category.toUpperCase() %></span></td>
+                <td><%= art.date %></td>
+                <td><%= art.featured ? 'YES' : 'NO' %></td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="/admin/artwork/edit/<%= art.id %>" class="admin-action-btn">EDIT</a>
+                    <form action="/admin/artwork/delete/<%= art.id %>" method="POST" onsubmit="return confirm('ARE YOU SURE YOU WANT TO DELETE THIS ARTWORK?');" style="display: inline;">
+                      <button type="submit" class="admin-action-btn" style="color: #ffb4ab; border-color: rgba(255, 180, 171, 0.3); cursor: pointer;">DELETE</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab Content: Settings -->
+  <div id="tab-settings" class="tab-content" style="display: none; margin-top: 32px;">
+    <h2 class="label-md" style="margin-bottom: 16px; color: var(--text-muted);">EDIT BIO, STATEMENTS & SYSTEM META</h2>
+    
+    <form action="/admin/settings" method="POST" style="max-width: 800px; border: 1px solid var(--border-muted); padding: 40px; background-color: var(--surface);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter);">
+        <div class="form-group">
+          <label for="artistName">ARTIST NAME</label>
+          <input type="text" id="artistName" name="artistName" value="<%= settings.artistName %>" required>
+        </div>
+        <div class="form-group">
+          <label for="tagline">TAGLINE / STYLE DIRECTIVE</label>
+          <input type="text" id="tagline" name="tagline" value="<%= settings.tagline %>" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="profilePicture">PROFILE PICTURE (IMAGE URL or FILE PATH)</label>
+        <input type="text" id="profilePicture" name="profilePicture" value="<%= settings.profilePicture %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="biography">BIOGRAPHY</label>
+        <textarea id="biography" name="biography" required style="min-height: 120px;"><%= settings.biography %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="artistStatement">ARTIST STATEMENT</label>
+        <textarea id="artistStatement" name="artistStatement" required style="min-height: 120px;"><%= settings.artistStatement %></textarea>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--gutter);">
+        <div class="form-group">
+          <label for="contactEmail">CONTACT EMAIL</label>
+          <input type="email" id="contactEmail" name="contactEmail" value="<%= settings.contactEmail %>" required>
+        </div>
+        <div class="form-group">
+          <label for="instagram">INSTAGRAM USERNAME</label>
+          <input type="text" id="instagram" name="instagram" value="<%= settings.instagram %>">
+        </div>
+        <div class="form-group">
+          <label for="github">GITHUB USERNAME</label>
+          <input type="text" id="github" name="github" value="<%= settings.github %>">
+        </div>
+      </div>
+
+      <button type="submit" class="btn" style="margin-top: 16px;">SAVE SITE CONFIGURATION</button>
+    </form>
+  </div>
+
+  <!-- Tab Content: Messages -->
+  <div id="tab-messages" class="tab-content" style="display: none; margin-top: 32px;">
+    <h2 class="label-md" style="margin-bottom: 16px; color: var(--text-muted);">INCOMING INQUIRIES FROM CONTACT FORM</h2>
+    <div class="admin-table-container">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>DATE</th>
+            <th>SENDER</th>
+            <th>SUBJECT</th>
+            <th>MESSAGE</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (messages.length === 0) { %>
+            <tr>
+              <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 32px;">NO INCOMING MESSAGES.</td>
+            </tr>
+          <% } else { %>
+            <% messages.forEach(msg => { %>
+              <tr>
+                <td style="white-space: nowrap;"><%= new Date(msg.date).toLocaleDateString() %> <%= new Date(msg.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></td>
+                <td>
+                  <strong><%= msg.name %></strong><br>
+                  <a href="mailto:<%= msg.email %>" style="color: var(--text-muted); text-decoration: none;"><%= msg.email %></a>
+                </td>
+                <td style="font-weight: 700;"><%= msg.subject %></td>
+                <td style="max-width: 400px; white-space: pre-line; color: var(--on-surface);"><%= msg.message %></td>
+                <td>
+                  <form action="/admin/messages/delete/<%= msg.id %>" method="POST" onsubmit="return confirm('ARE YOU SURE YOU WANT TO DELETE THIS MESSAGE?');">
+                    <button type="submit" class="admin-action-btn" style="color: #ffb4ab; border-color: rgba(255, 180, 171, 0.3); cursor: pointer;">DELETE</button>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active button style
+        tabBtns.forEach(b => {
+          b.classList.remove('active-tab');
+          b.style.borderColor = 'var(--border-muted)';
+          b.style.backgroundColor = 'transparent';
+          b.style.color = 'var(--on-background)';
+        });
+        
+        btn.classList.add('active-tab');
+        btn.style.borderColor = 'var(--border-stark)';
+        btn.style.backgroundColor = 'var(--border-stark)';
+        btn.style.color = 'var(--background)';
+        
+        // Toggle visible tab contents
+        const targetTab = btn.getAttribute('data-tab');
+        tabContents.forEach(content => {
+          if (content.id === `tab-${targetTab}`) {
+            content.style.display = 'block';
+          } else {
+            content.style.display = 'none';
+          }
+        });
+        
+        // Store current active tab in localStorage
+        localStorage.setItem('stitch_active_tab', targetTab);
+      });
+    });
+
+    // Style the initial active tab
+    const activeBtn = document.querySelector('.active-tab');
+    if (activeBtn) {
+      activeBtn.style.borderColor = 'var(--border-stark)';
+      activeBtn.style.backgroundColor = 'var(--border-stark)';
+      activeBtn.style.color = 'var(--background)';
+    }
+
+    // Restore active tab if saved
+    const savedTab = localStorage.getItem('stitch_active_tab');
+    if (savedTab) {
+      const savedBtn = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+      if (savedBtn) {
+        savedBtn.click();
+      }
+    }
+  });
+</script>
+
+<%- include('../partials/footer') %>

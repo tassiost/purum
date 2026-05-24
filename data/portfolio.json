@@ -1,0 +1,38 @@
+[
+  {
+    "id": "monolith-01",
+    "title": "MONOLITH I",
+    "category": "Sculpture",
+    "description": "A 4-meter brutalist concrete structure exploring structural isolation and sound resonance. Recorded in an abandoned power station in Berlin. The work investigates the interplay of industrial decay and permanent forms.",
+    "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
+    "date": "2025",
+    "featured": true
+  },
+  {
+    "id": "resonance-02",
+    "title": "SUB-RESONANCE",
+    "category": "Installation",
+    "description": "Site-specific sound installation using low-frequency transducers mounted directly to raw steel beams. Visitors feel the structural vibrations of the architecture, translating the building's skeletal tension into tactile sound.",
+    "imageUrl": "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=1200",
+    "date": "2025",
+    "featured": true
+  },
+  {
+    "id": "decay-03",
+    "title": "INDUSTRIAL DECAY II",
+    "category": "Photography",
+    "description": "A high-contrast, high-grain 35mm photographic series documenting the corrosion of decommissioned heavy machinery. Focused on the fine textures of oxidized iron and raw concrete.",
+    "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200",
+    "date": "2024",
+    "featured": false
+  },
+  {
+    "id": "void-04",
+    "title": "VOID EXCLUSION",
+    "category": "Performance",
+    "description": "A 3-hour silent endurance performance where the artist stands in complete darkness inside a steel grid cage, illuminated only by a high-intensity strobe light synchronized to their heartbeat.",
+    "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200",
+    "date": "2026",
+    "featured": true
+  }
+]

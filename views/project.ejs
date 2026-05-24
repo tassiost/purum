@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+<div style="padding-top: 40px; margin-bottom: 24px;">
+  <a href="/" class="label-md" style="color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+    &larr; BACK TO SELECTED WORKS
+  </a>
+</div>
+
+<div class="detail-grid">
+  <div class="detail-visual">
+    <img src="<%= artwork.imageUrl %>" alt="<%= artwork.title %>" style="width: 100%;">
+  </div>
+  <div class="detail-info">
+    <div class="detail-header">
+      <span class="label-sm text-muted" style="display: block; margin-bottom: 12px;"><%= artwork.category.toUpperCase() %></span>
+      <h1 class="headline-lg"><%= artwork.title %></h1>
+    </div>
+    <div class="detail-metadata">
+      <div class="meta-row">
+        <span class="label-sm text-muted">YEAR</span>
+        <span class="label-sm"><%= artwork.date %></span>
+      </div>
+      <div class="meta-row">
+        <span class="label-sm text-muted">CATEGORY</span>
+        <span class="label-sm"><%= artwork.category.toUpperCase() %></span>
+      </div>
+    </div>
+    <div class="detail-desc">
+      <h3 class="label-md" style="margin-bottom: 16px; color: var(--text-muted);">CONCEPT</h3>
+      <p class="body-md" style="line-height: 28px; white-space: pre-line;">
+        <%= artwork.description %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Simple Next / Previous navigation if multiple artworks exist -->
+<% 
+const currentIndex = artworks.findIndex(a => a.id === artwork.id);
+const prevArt = currentIndex > 0 ? artworks[currentIndex - 1] : null;
+const nextArt = currentIndex < artworks.length - 1 ? artworks[currentIndex + 1] : null;
+%>
+
+<% if (prevArt || nextArt) { %>
+  <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-muted); margin-top: 80px; padding-top: 40px; padding-bottom: 40px;">
+    <div>
+      <% if (prevArt) { %>
+        <span class="label-sm text-muted" style="display: block; margin-bottom: 8px;">PREVIOUS</span>
+        <a href="/project/<%= prevArt.id %>" class="artwork-title" style="font-size: 16px;">&larr; <%= prevArt.title %></a>
+      <% } %>
+    </div>
+    <div style="text-align: right;">
+      <% if (nextArt) { %>
+        <span class="label-sm text-muted" style="display: block; margin-bottom: 8px;">NEXT</span>
+        <a href="/project/<%= nextArt.id %>" class="artwork-title" style="font-size: 16px;"><%= nextArt.title %> &rarr;</a>
+      <% } %>
+    </div>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

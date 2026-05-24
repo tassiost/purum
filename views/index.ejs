@@ -1,0 +1,105 @@
+<%- include('partials/header') %>
+
+<% 
+// Find the featured artwork for the hero
+const featuredArtwork = artworks.find(a => a.featured) || artworks[0];
+%>
+
+<% if (featuredArtwork) { %>
+  <section class="hero-section">
+    <div class="hero-text">
+      <span class="tagline-accent label-md"><%= settings.tagline %></span>
+      <h1 class="headline-xl" style="margin-bottom: 24px;"><%= featuredArtwork.title %></h1>
+      <p class="body-lg text-muted" style="margin-bottom: 40px; max-width: 600px;">
+        <%= featuredArtwork.description %>
+      </p>
+      <a href="/project/<%= featuredArtwork.id %>" class="btn">View Project</a>
+    </div>
+    <div class="hero-visual">
+      <img src="<%= featuredArtwork.imageUrl %>" alt="<%= featuredArtwork.title %>">
+    </div>
+  </section>
+<% } %>
+
+<section id="work" style="border-top: 1px solid var(--border-muted); padding-top: var(--gutter); margin-top: 64px;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 48px;">
+    <h2 class="headline-lg">Selected Works</h2>
+    
+    <!-- Category Filters -->
+    <div class="category-filters" style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <button class="filter-btn btn btn-secondary active-filter" data-category="all" style="padding: 8px 16px; font-size: 12px;">ALL</button>
+      <% 
+        const categories = [...new Set(artworks.map(a => a.category))];
+        categories.forEach(cat => { 
+      %>
+        <button class="filter-btn btn btn-secondary" data-category="<%= cat.toLowerCase() %>" style="padding: 8px 16px; font-size: 12px;"><%= cat.toUpperCase() %></button>
+      <% }); %>
+    </div>
+  </div>
+
+  <div class="portfolio-grid" id="portfolio-container">
+    <% artworks.forEach(art => { %>
+      <div class="artwork-card" data-category="<%= art.category.toLowerCase() %>">
+        <div class="artwork-card-img-wrapper">
+          <a href="/project/<%= art.id %>">
+            <img src="<%= art.imageUrl %>" alt="<%= art.title %>" loading="lazy">
+          </a>
+        </div>
+        <div class="artwork-card-details">
+          <div class="artwork-meta">
+            <span class="label-sm text-muted"><%= art.category.toUpperCase() %></span>
+            <span class="label-sm text-muted"><%= art.date %></span>
+          </div>
+          <h3 class="artwork-title">
+            <a href="/project/<%= art.id %>"><%= art.title %></a>
+          </h3>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const artworkCards = document.querySelectorAll('.artwork-card');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active style
+        filterBtns.forEach(b => {
+          b.classList.remove('active-filter');
+          b.style.borderColor = 'var(--border-muted)';
+          b.style.backgroundColor = 'transparent';
+          b.style.color = 'var(--on-background)';
+        });
+        
+        btn.classList.add('active-filter');
+        btn.style.borderColor = 'var(--border-stark)';
+        btn.style.backgroundColor = 'var(--border-stark)';
+        btn.style.color = 'var(--background)';
+        
+        const category = btn.getAttribute('data-category');
+        
+        artworkCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (category === 'all' || cardCategory === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Style the initial active filter button
+    const activeBtn = document.querySelector('.active-filter');
+    if (activeBtn) {
+      activeBtn.style.borderColor = 'var(--border-stark)';
+      activeBtn.style.backgroundColor = 'var(--border-stark)';
+      activeBtn.style.color = 'var(--background)';
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>

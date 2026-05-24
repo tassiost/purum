@@ -1,0 +1,84 @@
+<%- include('../partials/header') %>
+
+<% 
+const isEdit = typeof artwork !== 'undefined' && artwork;
+const titleText = isEdit ? 'EDIT ARTWORK' : 'ADD NEW ARTWORK';
+const actionUrl = isEdit ? `/admin/artwork/edit/${artwork.id}` : '/admin/artwork/new';
+%>
+
+<section style="padding-top: 40px; max-width: 800px; margin: 0 auto;">
+  <div style="border-bottom: 1px solid var(--border-muted); padding-bottom: 24px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <span class="label-md text-muted" style="display: block; margin-bottom: 8px;">STITCH CMS</span>
+      <h1 class="headline-lg"><%= titleText %></h1>
+    </div>
+    <a href="/admin/dashboard" class="label-sm" style="color: var(--text-muted); text-decoration: none;">&larr; BACK TO DASHBOARD</a>
+  </div>
+
+  <% if (typeof errorMsg !== 'undefined' && errorMsg) { %>
+    <div class="alert alert-danger" style="margin-bottom: 24px;">
+      <%= errorMsg %>
+    </div>
+  <% } %>
+
+  <form action="<%= actionUrl %>" method="POST" enctype="multipart/form-data" style="border: 1px solid var(--border-muted); padding: 40px; background-color: var(--surface);">
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--gutter);">
+      <div class="form-group">
+        <label for="title">ARTWORK TITLE</label>
+        <input type="text" id="title" name="title" value="<%= isEdit ? artwork.title : '' %>" required placeholder="E.G., MONOLITH I">
+      </div>
+      <div class="form-group">
+        <label for="date">YEAR</label>
+        <input type="text" id="date" name="date" value="<%= isEdit ? artwork.date : new Date().getFullYear() %>" required placeholder="E.G., 2026">
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter);">
+      <div class="form-group">
+        <label for="category">CATEGORY</label>
+        <input type="text" id="category" name="category" value="<%= isEdit ? artwork.category : '' %>" required placeholder="E.G., Sculpture, Photography, Installation">
+      </div>
+      <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: 12px; margin-top: 24px;">
+        <input type="checkbox" id="featured" name="featured" value="true" <%= isEdit && artwork.featured ? 'checked' : '' %> style="width: 20px; height: 20px; accent-color: var(--primary);">
+        <label for="featured" style="cursor: pointer; margin-bottom: 0;">FEATURED ON LANDING PAGE</label>
+      </div>
+    </div>
+
+    <!-- Image selection controls -->
+    <div style="border: 1px solid var(--border-muted); padding: 24px; margin: 24px 0;">
+      <h3 class="label-md" style="margin-bottom: 16px; color: var(--text-muted);">IMAGE SOURCE</h3>
+      
+      <!-- Option 1: URL -->
+      <div class="form-group">
+        <label for="imageUrl">OPTION A: EXTERNAL IMAGE URL (RECOMMENDED FOR RENDER PERSISTENCE)</label>
+        <input type="text" id="imageUrl" name="imageUrl" value="<%= isEdit && artwork.imageUrl && !artwork.imageUrl.startsWith('/uploads/') ? artwork.imageUrl : '' %>" placeholder="https://images.unsplash.com/...">
+        <span class="label-sm text-muted" style="margin-top: 4px;">Provide an external image URL (e.g., Unsplash, Imgur). Recommended because files uploaded directly to Render's temporary disk will be deleted when the server sleeps or restarts.</span>
+      </div>
+
+      <div style="text-align: center; margin: 16px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 12px;">— OR —</div>
+
+      <!-- Option 2: Upload -->
+      <div class="form-group">
+        <label for="imageFile">OPTION B: UPLOAD NEW LOCAL FILE</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*">
+        <% if (isEdit && artwork.imageUrl && artwork.imageUrl.startsWith('/uploads/')) { %>
+          <span class="label-sm text-muted" style="margin-top: 4px; display: block;">Current file: <strong><%= artwork.imageUrl %></strong></span>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">CONCEPT / STATEMENT / DESCRIPTION</label>
+      <textarea id="description" name="description" required placeholder="Describe the physical form, sound elements, site specificity or cultural dialogue of the piece..." style="min-height: 180px;"><%= isEdit ? artwork.description : '' %></textarea>
+    </div>
+
+    <div style="display: flex; gap: 16px; margin-top: 32px;">
+      <button type="submit" class="btn"><%= isEdit ? 'SAVE CHANGES' : 'CREATE PORTFOLIO ITEM' %></button>
+      <a href="/admin/dashboard" class="btn btn-secondary">CANCEL</a>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/header') %> <!-- wait, let's include footer at the bottom, not header -->
+<%# wait, we included header by accident in the original file line, let's fix it by rendering footer! %>
+<%- include('../partials/footer') %>

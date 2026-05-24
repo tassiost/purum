@@ -1,0 +1,19 @@
+  </main>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-copy">
+        &copy; <%= new Date().getFullYear() %> <%= settings.artistName %>. ALL RIGHTS RESERVED.
+      </div>
+      <div class="footer-socials">
+        <% if (settings.instagram) { %>
+          <a href="https://instagram.com/<%= settings.instagram %>" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+        <% } %>
+        <% if (settings.github) { %>
+          <a href="https://github.com/<%= settings.github %>" target="_blank" rel="noopener noreferrer">GITHUB</a>
+        <% } %>
+        <a href="/admin/dashboard">CMS LOGIN</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
