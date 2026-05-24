@@ -137,7 +137,7 @@
   <nav class="flex justify-between items-center px-margin-desktop h-24 w-full z-50 bg-surface fixed top-0 border-b border-outline-variant">
     <div class="flex items-center">
       <% if (settings.logoUrl) { %>
-        <img alt="<%= settings.artistName %> Logo" class="h-12 w-auto object-contain" src="<%= settings.logoUrl %>"/>
+        <img referrerpolicy="no-referrer" alt="<%= settings.artistName %> Logo" class="h-12 w-auto object-contain" src="<%= settings.logoUrl %>"/>
       <% } else { %>
         <span class="font-headline-lg text-[20px] font-bold uppercase tracking-widest"><%= settings.artistName %></span>
       <% } %>
