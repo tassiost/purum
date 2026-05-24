@@ -1,38 +1,56 @@
 [
   {
-    "id": "monolith-01",
-    "title": "MONOLITH I",
-    "category": "Sculpture",
-    "description": "A 4-meter brutalist concrete structure exploring structural isolation and sound resonance. Recorded in an abandoned power station in Berlin. The work investigates the interplay of industrial decay and permanent forms.",
-    "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
-    "date": "2025",
+    "id": "archive-01",
+    "title": "SYSTEM ARCHIVE I",
+    "category": "Vintage Culture",
+    "description": "Part of the PURUM system archives documenting raw industrial precision and chaotic events in Bern and Berlin.",
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCQADr8VQ0Xtw8fyMJPHVu1ach2BPE1MCOIwl0Lvkh0gC48VTf4mXXjOt9EhEXkUqQjBxXA05kwsz9hKbhK0dt_-ZHTDvvKb-jNVobsBJuaHTggjbGWkp0fQVSvN6OYLf8BA2ekDssrx_6LUG0lrpbqE39mxorW5PzsKyt2TcyCpcaljniracTTX34VCAbU8Dpawv5IV_SNDoDsHqN-Ya4s22PTvgzYtCTVloyISs2c6HGmn_gWKtrwhzKrAlIBuCTljDAVfHLr6pI",
+    "date": "2024",
     "featured": true
   },
   {
-    "id": "resonance-02",
-    "title": "SUB-RESONANCE",
-    "category": "Installation",
-    "description": "Site-specific sound installation using low-frequency transducers mounted directly to raw steel beams. Visitors feel the structural vibrations of the architecture, translating the building's skeletal tension into tactile sound.",
-    "imageUrl": "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=1200",
-    "date": "2025",
-    "featured": true
-  },
-  {
-    "id": "decay-03",
-    "title": "INDUSTRIAL DECAY II",
-    "category": "Photography",
-    "description": "A high-contrast, high-grain 35mm photographic series documenting the corrosion of decommissioned heavy machinery. Focused on the fine textures of oxidized iron and raw concrete.",
-    "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200",
+    "id": "archive-02",
+    "title": "SYSTEM ARCHIVE II",
+    "category": "Vintage Culture",
+    "description": "Explorations into groove-focused techno environments, highlighting architectural decay and dark professionalism.",
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuC_Z58MIwpYNsC6rvPxW8lp4WcIbmejNHsnGo_d9Zb89-DSu15W1G_GMl-4aAiK1Awj4iKuFV1OyLKIA5_KF6zQGX-O2xmqFgKDs3EyEOu1abgfQpWGFBkE2f56eUNkWUeOp4ci9M8BfFg0VFP-Fdk8b0Cc-ZeL21AXl0L83UxvHUkgaq0-HhhEGXQkdfsSfEtwrY787ocJ-uO1pU8u0E53zyWFTCUyzYPw7lhU32ogMTv-YOqqD5cViu7v-opA-BvqlU6UW-Ydr2g",
     "date": "2024",
     "featured": false
   },
   {
-    "id": "void-04",
-    "title": "VOID EXCLUSION",
-    "category": "Performance",
-    "description": "A 3-hour silent endurance performance where the artist stands in complete darkness inside a steel grid cage, illuminated only by a high-intensity strobe light synchronized to their heartbeat.",
-    "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200",
-    "date": "2026",
-    "featured": true
+    "id": "archive-03",
+    "title": "SYSTEM ARCHIVE III",
+    "category": "Vintage Culture",
+    "description": "Capturing transient moments of chaotic late-night energy and hypnotic, raw sound vibrations.",
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAYtG3dOI_3WBm-nWMBa2Age8FwTe8boGQXP-uqCbYXsz_DmEib-B8XE7oTHNaMqn7JcQ-tdUFRPLYLq-8rfdQpJcdKtaFbQnX6t1Fzt6ja3K8GqPAV61t6OJ9tqeRT2-dsx7-OfrWg_V6LWynzJbeTNrttvgEXM2Fh_qKicQPPb6zKihkTgVKwvI1qrHTjm_AVnUbxQzGvFaVmsux5Y-zx6zDgTmEBpQoB3drGVLoiE3avqIlu0DLqI3JvhthfE-ebem4tmN5YbhA",
+    "date": "2024",
+    "featured": false
+  },
+  {
+    "id": "archive-04",
+    "title": "SYSTEM ARCHIVE IV",
+    "category": "Vintage Culture",
+    "description": "Photographic records of vintage machinery and raw structural skeletons from the industrial underbelly.",
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCN9Q6d1RDEv0VJeFGWAHNnIc44JNTzntrvB3QaCAprFyp8BxTmxplelNmzoIrE6PQPplLZ_pppT_mrEclSIRUgFeEzEoiR2CvzXZppCfbzUtCcWxSMCfPw_YLHxK1_qRShv1Wcy7UPavc9sfzqVyi_5Wm2InN-DVHum1mwaJVWj4-wrupSi2WSSeh8zPkmSKJBecdMGoRQBsbTo1gUZO4P8ejF-hGLZjw-ZG2MgrFjJDIXIJKqb-DnrgvTAdcpoGQ412tVlAfLLH4",
+    "date": "2024",
+    "featured": false
+  },
+  {
+    "id": "archive-05",
+    "title": "SYSTEM ARCHIVE V",
+    "category": "Vintage Culture",
+    "description": "Visual documentations from live AV installations, connecting sub-resonance beams with intense stroboscopic displays.",
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDB6842IQOcaGupREQvpQbgGyp1jfD30q7d_EyNYBDhR3zfFFD10g9NUF3WZnnONP-r7A5Duv1QOlmhKuK-nUihseH9SQLESR9_1x8pi0jcNO5iRl_TQcqGux3rHGTy8XgVsG2v2QMo6mp84wCXXxj9KKY3UHlhkxGr-RV3OyFCsPf2I38lzFcw6_Q1v6NiUbWGz0072dtSC1yPSG2yosUblRCQ0NZBcAtslQ187TEsP8dIn1LtIBGSLUPMwYCc1YOfAzVktEzUXq0",
+    "date": "2024",
+    "featured": false
+  },
+  {
+    "id": "archive-06",
+    "title": "SYSTEM ARCHIVE VI",
+    "category": "Vintage Culture",
+    "description": "A close-up exploration of analog hardware and tape-saturation, translating noise into structural integrity.",
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCdSzN4dAuHlwL_xjkdt72eEeehhuvAS2GE5w3azKj0NVIHxtELhWka6Iov45_ll4IbgthlRXgRYrIc--F8KUdWbR3h8kZn7dVzSFaDb953s4mmREF19qZWvVwneD5BqD9u03i2J-zAL56kLcEKaqlc60OfqWjn0pOVS7Tkg1AzfNoPiRZgFBIFmbue0i-NVmuEAn5PukllYBkxc1EijPqYotT7UhzeS0eMMrSg5Z0iF14dY7wgLWWdMS_8wE18QPwtniOc_falxGg",
+    "date": "2024",
+    "featured": false
   }
 ]
