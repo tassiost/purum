@@ -130,6 +130,10 @@
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .color-layer {
+      filter: url(#spotlight-shader);
+      will-change: clip-path;
+    }
     .glitch-hover:hover {
       text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
     }
@@ -335,7 +339,21 @@
       });
     });
 
-    // Spotlight Hover Mousemove Reveal
+    // Liquid Displacement Shader variables
+    let currentScale = 0;
+    let targetScale = 0;
+    const displacementMap = document.querySelector('#spotlight-shader feDisplacementMap');
+
+    function animateShader() {
+      currentScale += (targetScale - currentScale) * 0.15;
+      if (displacementMap) {
+        displacementMap.setAttribute('scale', currentScale.toFixed(2));
+      }
+      requestAnimationFrame(animateShader);
+    }
+    animateShader();
+
+    // Spotlight Hover Mousemove Reveal with displacement shader mapping
     document.querySelectorAll('.spotlight-container').forEach(container => {
       const colorImg = container.querySelector('.color-layer');
       if (!colorImg) return;
@@ -345,10 +363,12 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         colorImg.style.clipPath = `circle(110px at ${x}px ${y}px)`;
+        targetScale = 25;
       });
 
       container.addEventListener('mouseleave', () => {
         colorImg.style.clipPath = 'circle(0px at 0px 0px)';
+        targetScale = 0;
       });
     });
 
@@ -395,5 +415,14 @@
       }
     }
   </script>
+  <!-- Hidden SVG displacement map filter (spotlight liquid shader) -->
+  <svg class="hidden" width="0" height="0">
+    <defs>
+      <filter id="spotlight-shader">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
 </body>
 </html>
