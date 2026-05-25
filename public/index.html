@@ -560,7 +560,7 @@
       ];
       for (let i = 0; i < 55; i++) {
         const bar = document.createElement('div');
-        bar.className = 'waveform-bar w-[3px] bg-white/20 transition-colors pointer-events-none';
+        bar.className = 'waveform-bar flex-grow bg-white/20 transition-colors pointer-events-none';
         bar.style.height = `${heights[i]}%`;
         waveform.appendChild(bar);
       }
@@ -576,7 +576,15 @@
       // 2. Play / Pause Control Toggle
       playBtn.addEventListener('click', () => {
         if (audio.paused) {
-          // Initialize/Resume Web Audio context inside the background visualizer iframe on user interaction
+          // Resume the iframe's Three.js AudioContext from the parent page on user gesture
+          try {
+            if (bgIframe && bgIframe.contentWindow && bgIframe.contentWindow.THREE && bgIframe.contentWindow.THREE.AudioContext) {
+              bgIframe.contentWindow.THREE.AudioContext.getContext().resume();
+            }
+          } catch (err) {
+            console.error('Error resuming iframe AudioContext:', err);
+          }
+
           if (bgIframe && bgIframe.contentWindow) {
             bgIframe.contentWindow.postMessage({ type: 'SC_PLAY' }, '*');
           }
