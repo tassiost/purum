@@ -3,7 +3,17 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title><%= settings.artistName %> | <%= settings.tagline %></title>
+  <title><%= settings.artistName %> | <%= settings.location %></title>
+  <meta name="description" content="<%= settings.artistName %> is a Bern-based DJ moving somewhere between groove-focused techno, house and chaotic late-night energy. Check out live transmissions, archives, and official booking.">
+  <meta name="author" content="<%= settings.artistName %>">
+  
+  <!-- Open Graph / Facebook Social Previews -->
+  <meta property="og:title" content="<%= settings.artistName %> | <%= settings.location %>">
+  <meta property="og:description" content="<%= settings.biography %>">
+  <meta property="og:url" content="https://purum.onrender.com">
+  <meta property="og:image" content="<%= settings.profilePicture %>">
+  <meta property="og:type" content="website">
+
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
