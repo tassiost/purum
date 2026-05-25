@@ -46,5 +46,18 @@
         <p>Click to start visualizer</p>
       </div>
     </main>
+    <script>
+      // Autoplay the visualizer by programmatically dispatching a click on load
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const clickEvent = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+          });
+          document.body.dispatchEvent(clickEvent);
+        }, 50);
+      });
+    </script>
   </body>
 </html>
