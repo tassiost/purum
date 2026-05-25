@@ -168,13 +168,20 @@
       85% { opacity: 0.8; }
       100% { top: 85%; opacity: 0; }
     }
+    @keyframes jitter {
+      0%, 100% { transform: translateX(0) scaleX(1); }
+      20% { transform: translateX(-3px) scaleX(1.1); opacity: 0.8; }
+      40% { transform: translateX(3px) scaleX(0.95); opacity: 1; }
+      60% { transform: translateX(-1px) scaleX(1.05); }
+      80% { transform: translateX(2px) scaleX(0.95) skewX(4deg); }
+    }
     .scan-laser {
       position: absolute;
       left: 15%; right: 15%; height: 1px;
       background: linear-gradient(90deg, transparent, #ffffff, transparent);
       box-shadow: 0 0 6px #ffffff;
       pointer-events: none;
-      animation: sweep 1.8s infinite linear;
+      animation: sweep 1.8s infinite linear, jitter 0.15s infinite linear;
     }
     .glitch-hover:hover {
       text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
@@ -416,11 +423,7 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
-        // Add a bit of random distortion (analog lens static wiggle!)
-        const randomX = (Math.random() - 0.5) * 8;
-        const randomY = (Math.random() - 0.5) * 8;
-        
-        colorImg.style.clipPath = `circle(110px at ${x + randomX}px ${y + randomY}px)`;
+        colorImg.style.clipPath = `circle(110px at ${x}px ${y}px)`;
         
         // Dynamic position of the radar target reticle
         const sight = container.querySelector('.scan-sight');
