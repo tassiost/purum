@@ -138,8 +138,8 @@
     }
     .scan-sight {
       position: absolute;
-      width: 220px;
-      height: 220px;
+      width: 13.75rem;
+      height: 13.75rem;
       border: 1px solid rgba(255, 255, 255, 0.45);
       border-radius: 50% !important;
       pointer-events: none;
@@ -147,7 +147,37 @@
       opacity: 0;
       transform: translate(-50%, -50%) scale(0.5);
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 1.25rem rgba(255, 255, 255, 0.08);
+    }
+    .spotlight-container:hover .scan-sight {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .scan-sight::before, .scan-sight::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.3);
+      pointer-events: none;
+    }
+    .scan-sight::before {
+      top: 50%; left: 0.9375rem; right: 0.9375rem; height: 1px;
+    }
+    .scan-sight::after {
+      left: 50%; top: 0.9375rem; bottom: 0.9375rem; width: 1px;
+    }
+    @keyframes sweep {
+      0% { top: 15%; opacity: 0; }
+      15% { opacity: 0.8; }
+      85% { opacity: 0.8; }
+      100% { top: 85%; opacity: 0; }
+    }
+    .scan-laser {
+      position: absolute;
+      left: 0.9375rem; right: 0.9375rem; height: 1px;
+      background: linear-gradient(90deg, transparent, #ffffff, transparent);
+      box-shadow: 0 0 0.375rem #ffffff;
+      pointer-events: none;
+      animation: sweep 1.8s infinite linear, jitter 0.15s infinite linear;
     }
     .spotlight-container:hover .scan-sight {
       opacity: 1;
@@ -480,7 +510,7 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         
-        colorImg.style.clipPath = `circle(110px at ${x}px ${y}px)`;
+        colorImg.style.clipPath = `circle(6.875rem at ${x}px ${y}px)`;
         
         // Dynamic position of the radar target reticle
         const sight = container.querySelector('.scan-sight');
