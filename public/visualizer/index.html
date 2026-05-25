@@ -53,6 +53,14 @@
         if (e.data.type === 'SC_PLAY') {
           window.isSoundCloudPlaying = true;
           console.log('Visualizer: SoundCloud is playing - igniting particles!');
+          try {
+            // Resume static Web Audio Context of Three.js
+            if (window.THREE && window.THREE.AudioContext) {
+              window.THREE.AudioContext.getContext().resume();
+            }
+          } catch (err) {
+            console.error('Error resuming AudioContext:', err);
+          }
         } else if (e.data.type === 'SC_PAUSE') {
           window.isSoundCloudPlaying = false;
           console.log('Visualizer: SoundCloud is paused - cooling down particles.');

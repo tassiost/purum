@@ -38,7 +38,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: function (res, path, stat) {
+    res.set('Access-Control-Allow-Origin', '*');
+  }
+}));
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
