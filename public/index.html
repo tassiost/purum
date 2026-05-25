@@ -4,6 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>MONOLITH | PURUM</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -111,7 +112,7 @@
       pointer-events: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: url("https://grainy-gradients.vercel.app/noise.svg");
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       opacity: 0.05;
       z-index: 9999;
     }
@@ -226,23 +227,25 @@
         <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">Transmissions / Audio</h3>
         <span class="font-label-md text-label-md text-outline">STREAM_LINK_STABLE</span>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter md:grid-cols-2 xl:grid-cols-4">
-        <div class="group border border-primary p-stack-lg bg-surface-container-low transition-colors cursor-pointer">
-          <div class="flex justify-between items-start mb-stack-lg">
-            <span class="font-label-sm text-label-sm text-primary">CAT: UPCOMING_EVENT</span>
-            <span class="material-symbols-outlined group-hover:rotate-180 transition-transform">event_upcoming</span>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <div class="col-span-12 lg:col-span-3 group border border-primary p-stack-lg bg-surface-container-low transition-colors cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-stack-lg">
+              <span class="font-label-sm text-label-sm text-primary">CAT: UPCOMING_EVENT</span>
+              <span class="material-symbols-outlined group-hover:rotate-180 transition-transform">event_upcoming</span>
+            </div>
+            <h4 class="font-headline-lg text-[24px] mb-stack-sm leading-tight">BLUE DIMENSION @ 14.03.25</h4>
+            <p class="font-body-md text-body-md text-secondary opacity-60 italic">Featuring @blue.dimension.djs</p>
           </div>
-          <h4 class="font-headline-lg text-[28px] mb-stack-sm">BLUE DIMENSION @ 14.03.25</h4>
-          <p class="font-body-md text-body-md text-secondary opacity-60 italic">Featuring @blue.dimension.djs</p>
           <div class="mt-stack-lg h-1 bg-primary transition-all origin-left"></div>
         </div>
-        <div class="lg:col-span-8">
+        <div class="col-span-12 lg:col-span-6">
           <!-- SoundCloud Embed Container -->
           <div class="w-full bg-surface-container-low border border-outline-variant p-2 grayscale contrast-125">
-            <iframe allow="autoplay" class="grayscale contrast-125 invert" frameborder="no" height="350" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/purumofficial&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" width="100%"></iframe>
+            <iframe allow="autoplay; encrypted-media" class="grayscale contrast-125 invert" frameborder="no" height="350" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/purumofficial&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" width="100%"></iframe>
           </div>
         </div>
-        <div class="lg:col-span-4 flex flex-col gap-stack-md">
+        <div class="col-span-12 lg:col-span-3 flex flex-col gap-stack-md">
           <div class="border-l border-primary pl-stack-md mb-stack-sm">
             <span class="font-label-md text-label-md text-primary uppercase tracking-widest">MOST_POPULAR_NODES</span>
           </div>
@@ -294,43 +297,6 @@
               <span class="font-label-sm text-label-sm text-outline">2023.08.05</span>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Latest Movement Grid -->
-    <section class="px-margin-desktop py-section-gap">
-      <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-section-gap">
-        <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">Latest / Movement</h3>
-        <span class="font-label-md text-label-md text-outline">V1.0.42_ID_SYS</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-        <div class="group border border-outline-variant p-stack-lg hover:border-primary transition-colors cursor-pointer">
-          <div class="flex justify-between items-start mb-stack-lg">
-            <span class="font-label-sm text-label-sm text-outline">CAT: MUSIC_01</span>
-            <span class="material-symbols-outlined group-hover:scale-125 transition-transform">album</span>
-          </div>
-          <h4 class="font-headline-lg text-[28px] mb-stack-sm">THE ARCHITECT</h4>
-          <p class="font-body-md text-body-md text-secondary opacity-60">LP / Pole Group Recordings</p>
-          <div class="mt-stack-lg h-1 bg-outline-variant group-hover:bg-primary transition-all origin-left"></div>
-        </div>
-        <div class="group border border-outline-variant p-stack-lg hover:border-primary transition-colors cursor-pointer">
-          <div class="flex justify-between items-start mb-stack-lg">
-            <span class="font-label-sm text-label-sm text-outline">CAT: GIGS_09</span>
-            <span class="material-symbols-outlined group-hover:scale-125 transition-transform">event</span>
-          </div>
-          <h4 class="font-headline-lg text-[28px] mb-stack-sm">BERGHAIN NYE</h4>
-          <p class="font-body-md text-body-md text-secondary opacity-60">Berlin / Klockworks Event</p>
-          <div class="mt-stack-lg h-1 bg-outline-variant group-hover:bg-primary transition-all origin-left"></div>
-        </div>
-        <div class="group border border-outline-variant p-stack-lg hover:border-primary transition-colors cursor-pointer">
-          <div class="flex justify-between items-start mb-stack-lg">
-            <span class="font-label-sm text-label-sm text-outline">CAT: MEDIA_05</span>
-            <span class="material-symbols-outlined group-hover:scale-125 transition-transform">video_library</span>
-          </div>
-          <h4 class="font-headline-lg text-[28px] mb-stack-sm">POLE GROUP A/V</h4>
-          <p class="font-body-md text-body-md text-secondary opacity-60">Exclusive Documentary Clip</p>
-          <div class="mt-stack-lg h-1 bg-outline-variant group-hover:bg-primary transition-all origin-left"></div>
         </div>
       </div>
     </section>
