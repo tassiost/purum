@@ -47,6 +47,18 @@
       </div>
     </main>
     <script>
+      // Listen to play/pause state from parent page (SoundCloud player events)
+      window.isSoundCloudPlaying = false;
+      window.addEventListener('message', (e) => {
+        if (e.data.type === 'SC_PLAY') {
+          window.isSoundCloudPlaying = true;
+          console.log('Visualizer: SoundCloud is playing - igniting particles!');
+        } else if (e.data.type === 'SC_PAUSE') {
+          window.isSoundCloudPlaying = false;
+          console.log('Visualizer: SoundCloud is paused - cooling down particles.');
+        }
+      });
+
       // Autoplay the visualizer by programmatically dispatching a click on load
       window.addEventListener('load', () => {
         setTimeout(() => {
