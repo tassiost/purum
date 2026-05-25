@@ -245,9 +245,55 @@
           </div>
           <h2 class="font-label-md text-label-md uppercase tracking-[0.3em] mb-stack-md text-outline">BERN // SWITZERLAND</h2>
           
-          <!-- SoundCloud Embed Player (Compact Industrial Cassette Layout) -->
-          <div class="w-full bg-surface-container-low border border-outline-variant p-2 grayscale contrast-125 mb-stack-lg">
-            <iframe allow="autoplay; encrypted-media" class="grayscale contrast-125 invert" frameborder="no" height="166" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/purumofficial&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=false" width="100%"></iframe>
+          <!-- Custom Bespoke Brutalist Audio Player (SoundCloud replica, Web Audio reactiveness) -->
+          <div class="w-full bg-[#0c0c0c] border border-outline-variant/50 p-4 flex gap-4 select-none relative mb-stack-lg" style="box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+            <!-- Native Audio Node (CORS-safe) -->
+            <audio id="hero-audio" crossorigin="anonymous" src="/audio/mas_que_nada.mp3"></audio>
+
+            <!-- Left: Cover Art -->
+            <div class="w-[120px] h-[120px] md:w-[150px] md:h-[150px] flex-shrink-0 relative border border-outline-variant/30">
+              <img id="player-cover" alt="Cover Art" class="w-full h-full object-cover grayscale brightness-90 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQADr8VQ0Xtw8fyMJPHVu1ach2BPE1MCOIwl0Lvkh0gC48VTf4mXXjOt9EhEXkUqQjBxXA05kwsz9hKbhK0dt_-ZHTDvvKb-jNVobsBJuaHTggjbGWkp0fQVSvN6OYLf8BA2ekDssrx_6LUG0lrpbqE39mxorW5PzsKyt2TcyCpcaljniracTTX34VCAbU8Dpawv5IV_SNDoDsHqN-Ya4s22PTvgzYtCTVloyISs2c6HGmn_gWKtrwhzKrAlIBuCTljDAVfHLr6pI=s1200"/>
+              <a href="https://soundcloud.com/purumofficial" target="_blank" class="absolute bottom-1 left-1 font-label-sm text-[8px] text-outline hover:text-primary leading-none bg-black/60 px-1 py-0.5">Privacy policy</a>
+            </div>
+
+            <!-- Right: Play & Waveform -->
+            <div class="flex-grow flex flex-col justify-between py-1">
+              <!-- Top Metadata & Social Row -->
+              <div class="flex justify-between items-start gap-2">
+                <div class="flex items-center gap-3">
+                  <!-- Play / Pause Button -->
+                  <button id="player-play-btn" class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform active:scale-95 cursor-crosshair">
+                    <span id="player-play-icon" class="material-symbols-outlined text-[24px] font-bold" style="font-variation-settings: 'FILL' 1, 'wght' 700;">play_arrow</span>
+                  </button>
+                  <div class="flex flex-col">
+                    <a href="https://soundcloud.com/purumofficial" target="_blank" class="font-label-sm text-[11px] text-outline uppercase tracking-wider hover:underline">Purum</a>
+                    <h4 class="font-body-md text-[13px] font-bold text-primary tracking-wide leading-tight truncate max-w-[150px] md:max-w-[200px]" id="player-title">Qoala - Mas Que Nada (2013)</h4>
+                  </div>
+                </div>
+                <!-- Social & SC branding -->
+                <div class="flex items-center gap-2 text-outline">
+                  <a href="https://soundcloud.com/purumofficial" target="_blank" class="hover:text-primary transition-colors cursor-crosshair" title="LIKE"><span class="material-symbols-outlined text-[16px]">favorite</span></a>
+                  <a href="https://soundcloud.com/purumofficial/reason" target="_blank" class="hover:text-primary transition-colors cursor-crosshair" title="DOWNLOAD"><span class="material-symbols-outlined text-[16px]">download</span></a>
+                  <a href="#" onclick="shareWebsite(event)" class="hover:text-primary transition-colors cursor-crosshair" title="SHARE"><span class="material-symbols-outlined text-[16px]">share</span></a>
+                  <a href="https://soundcloud.com/purumofficial" target="_blank" class="ml-2 hover:text-primary transition-colors" title="SOUNDCLOUD">
+                    <svg class="h-4 w-auto fill-current" viewBox="0 0 24 24"><path d="M12 12.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm1.5.5a.5.5 0 0 1 1 0v2.5a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v2a.5.5 0 0 1-1 0zm2 .5a.5.5 0 0 1 1 0v1.5a.5.5 0 0 1-1 0zm2 .5a.5.5 0 0 1 1 0v1a.5.5 0 0 1-1 0zm-8.5-2a.5.5 0 0 0-.5.5v3.5a.5.5 0 0 0 1 0v-3.5a.5.5 0 0 0-.5-.5zm-1.5 1a.5.5 0 0 0-.5.5v2.5a.5.5 0 0 0 1 0v-2.5a.5.5 0 0 0-.5-.5zm-1.5.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5zm-1.5.5a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0v-1.5a.5.5 0 0 0-.5-.5zm-1.5.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-.5-.5zm-1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-.5-.5zm-1.5-.5a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0v-1.5a.5.5 0 0 0-.5-.5zM1.5 13a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-.5-.5z"/></svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Mid: Waveform Visualizer -->
+              <div class="relative w-full h-[60px] flex items-end gap-[1px] mt-2 cursor-crosshair group" id="waveform-container">
+                <!-- Floating current timecode -->
+                <div id="player-time-current" class="absolute bottom-[2px] left-0 font-label-sm text-[9px] text-[#808080] pointer-events-none select-none">0:00</div>
+                <!-- Total duration badge -->
+                <div id="player-time-total" class="absolute bottom-[2px] right-0 font-label-sm text-[9px] text-black bg-white px-1 py-0.5 pointer-events-none select-none font-bold">4:47</div>
+              </div>
+
+              <!-- Bottom Row: Plays counts -->
+              <div class="flex justify-end items-center text-outline mt-1 text-[10px]">
+                <span class="flex items-center gap-1 font-label-sm text-[9px]"><span class="material-symbols-outlined text-[10px]">play_arrow</span> 28</span>
+              </div>
+            </div>
           </div>
 
           <div class="flex flex-col gap-4">
@@ -492,38 +538,93 @@
       }
     }
 
-    // SoundCloud Playback state sync with background visualizer
+    // Bespoke Brutalist Waveform Audio Player Logic
     document.addEventListener('DOMContentLoaded', () => {
-      const scIframe = document.querySelector('iframe[src*="soundcloud.com"]');
+      const audio = document.getElementById('hero-audio');
+      const playBtn = document.getElementById('player-play-btn');
+      const playIcon = document.getElementById('player-play-icon');
+      const waveform = document.getElementById('waveform-container');
       const bgIframe = document.querySelector('iframe[src*="visualizer"]');
+      const timeCurrent = document.getElementById('player-time-current');
       
-      if (scIframe && bgIframe) {
-        setTimeout(() => {
-          try {
-            const scWidget = SC.Widget(scIframe);
-            
-            scWidget.bind(SC.Widget.Events.PLAY, () => {
-              if (bgIframe.contentWindow) {
-                bgIframe.contentWindow.postMessage({ type: 'SC_PLAY' }, '*');
-              }
-            });
+      if (!audio || !playBtn || !waveform) return;
 
-            scWidget.bind(SC.Widget.Events.PAUSE, () => {
-              if (bgIframe.contentWindow) {
-                bgIframe.contentWindow.postMessage({ type: 'SC_PAUSE' }, '*');
-              }
-            });
-
-            scWidget.bind(SC.Widget.Events.FINISH, () => {
-              if (bgIframe.contentWindow) {
-                bgIframe.contentWindow.postMessage({ type: 'SC_PAUSE' }, '*');
-              }
-            });
-          } catch (err) {
-            console.error('Error binding to SoundCloud Widget:', err);
-          }
-        }, 1500);
+      // 1. Generate 80 static wave bars mimicking a real techno waveform
+      const heights = [
+        15, 25, 30, 45, 35, 20, 10, 25, 40, 50, 60, 45, 30, 15, 20, 35, 45, 55, 65, 50, 
+        40, 30, 20, 10, 25, 35, 45, 50, 40, 30, 15, 25, 30, 40, 55, 65, 75, 80, 70, 55, 
+        45, 35, 25, 10, 20, 35, 50, 60, 55, 40, 30, 15, 20, 35, 50, 65, 70, 60, 45, 30, 
+        20, 10, 25, 35, 45, 55, 60, 50, 35, 20, 15, 25, 30, 40, 50, 60, 45, 30, 20, 10
+      ];
+      for (let i = 0; i < 80; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'waveform-bar w-[3px] bg-white/20 transition-colors pointer-events-none';
+        bar.style.height = `${heights[i]}%`;
+        waveform.appendChild(bar);
       }
+
+      // 2. Play / Pause Control Toggle
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          // Initialize/Resume Web Audio context inside the background visualizer iframe on user interaction
+          if (bgIframe && bgIframe.contentWindow) {
+            bgIframe.contentWindow.postMessage({ type: 'SC_PLAY' }, '*');
+          }
+          audio.play();
+          playIcon.innerText = 'pause';
+        } else {
+          audio.pause();
+          playIcon.innerText = 'play_arrow';
+          if (bgIframe && bgIframe.contentWindow) {
+            bgIframe.contentWindow.postMessage({ type: 'SC_PAUSE' }, '*');
+          }
+        }
+      });
+
+      // 3. Audio Time Update (Scrubbing feedback, timecodes & highlight)
+      audio.addEventListener('timeupdate', () => {
+        if (isNaN(audio.duration)) return;
+        const progress = audio.currentTime / audio.duration;
+        const barCount = Math.floor(progress * 80);
+        
+        // Highlight active waveform bars
+        const bars = document.querySelectorAll('.waveform-bar');
+        bars.forEach((bar, idx) => {
+          if (idx < barCount) {
+            bar.style.backgroundColor = '#ffffff'; // Stark white (played)
+          } else {
+            bar.style.backgroundColor = 'rgba(255, 255, 255, 0.20)'; // Muted grey (unplayed)
+          }
+        });
+
+        // Update current playhead time text (minutes:seconds)
+        const curMin = Math.floor(audio.currentTime / 60);
+        const curSec = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+        timeCurrent.innerText = `${curMin}:${curSec}`;
+        
+        // Move the timecode horizontally to hover over the current playhead bar!
+        const offsetPercent = Math.min(progress * 100, 85); // clamp to prevent clipping off-right
+        timeCurrent.style.left = `${offsetPercent}%`;
+      });
+
+      // 4. Interactive Waveform Scrubbing (seek to click)
+      waveform.addEventListener('click', (e) => {
+        const rect = waveform.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const percentage = Math.max(0, Math.min(1, x / rect.width));
+        
+        if (!isNaN(audio.duration)) {
+          audio.currentTime = percentage * audio.duration;
+        }
+      });
+      
+      // Auto reset play icon on song finish
+      audio.addEventListener('ended', () => {
+        playIcon.innerText = 'play_arrow';
+        if (bgIframe && bgIframe.contentWindow) {
+          bgIframe.contentWindow.postMessage({ type: 'SC_PAUSE' }, '*');
+        }
+      });
     });
   </script>
   <!-- Hidden SVG displacement map filter (spotlight liquid shader) -->
