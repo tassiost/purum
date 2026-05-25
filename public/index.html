@@ -223,79 +223,55 @@
 
     <!-- Audio Transmissions Section -->
     <section class="px-margin-desktop py-section-gap border-t border-outline-variant" id="audio">
-      <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-section-gap">
+      <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
         <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">Transmissions / Audio</h3>
         <span class="font-label-md text-label-md text-outline">STREAM_LINK_STABLE</span>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-        <div class="col-span-12 lg:col-span-3 group border border-primary p-stack-lg bg-surface-container-low transition-colors cursor-pointer flex flex-col justify-between">
+      <!-- SoundCloud Embed Container (Dedicated Full Width) -->
+      <div class="w-full bg-surface-container-low border border-outline-variant p-4 grayscale contrast-125">
+        <iframe allow="autoplay; encrypted-media" class="grayscale contrast-125 invert" frameborder="no" height="380" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/purumofficial&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" width="100%"></iframe>
+      </div>
+    </section>
+
+    <!-- Affiliation & Events Section -->
+    <section class="px-margin-desktop py-section-gap border-t border-outline-variant" id="events">
+      <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
+        <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">Label &amp; Events</h3>
+        <span class="font-label-md text-label-md text-outline">YAKU.RECORDS_SYS</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mt-8">
+        <!-- Label Info Card -->
+        <div class="border border-outline-variant p-stack-lg bg-surface-container-low flex flex-col justify-between min-h-[220px]">
           <div>
-            <div class="flex justify-between items-start mb-stack-lg">
-              <span class="font-label-sm text-label-sm text-primary">CAT: UPCOMING_EVENT</span>
-              <span class="material-symbols-outlined group-hover:rotate-180 transition-transform">event_upcoming</span>
+            <div class="flex justify-between items-center mb-stack-md">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">AFFILIATION</span>
+              <span class="material-symbols-outlined">public</span>
             </div>
-            <h4 class="font-headline-lg text-[24px] mb-stack-sm leading-tight">BLUE DIMENSION @ 14.03.25</h4>
-            <p class="font-body-md text-body-md text-secondary opacity-60 italic">Featuring @blue.dimension.djs</p>
+            <h4 class="font-headline-lg text-[24px] mb-stack-sm leading-tight">YAKU RECORDS</h4>
+            <p class="font-body-md text-body-md text-secondary opacity-80 leading-relaxed">
+              Bern-based House &amp; Techno Event Label. Representing underground groove and raw chaotic energy.
+            </p>
           </div>
-          <div class="mt-stack-lg h-1 bg-primary transition-all origin-left"></div>
+          <div class="mt-4 pt-2 border-t border-outline-variant/30 flex justify-between items-center">
+            <span class="font-label-sm text-label-sm text-outline uppercase">FOLLOWER_NODE_STATS</span>
+            <span class="font-label-sm text-label-sm text-primary font-bold">1,500_FOLLOWERS</span>
+          </div>
         </div>
-        <div class="col-span-12 lg:col-span-6">
-          <!-- SoundCloud Embed Container -->
-          <div class="w-full bg-surface-container-low border border-outline-variant p-2 grayscale contrast-125">
-            <iframe allow="autoplay; encrypted-media" class="grayscale contrast-125 invert" frameborder="no" height="350" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/purumofficial&amp;color=%23000000&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" width="100%"></iframe>
+        <!-- Upcoming Event Card -->
+        <div class="border border-primary p-stack-lg bg-surface-container-low flex flex-col justify-between min-h-[220px]">
+          <div>
+            <div class="flex justify-between items-center mb-stack-md">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">UPCOMING_EVENT</span>
+              <span class="material-symbols-outlined">event_upcoming</span>
+            </div>
+            <h4 class="font-headline-lg text-[24px] mb-stack-sm leading-tight text-primary">BLUE DIMENSION @ 14.03.25</h4>
+            <p class="font-body-md text-body-md text-secondary opacity-80 leading-relaxed">
+              Featuring @blue.dimension.djs. High-intensity sound transmission and hypnotic groove loops.
+            </p>
           </div>
-        </div>
-        <div class="col-span-12 lg:col-span-3 flex flex-col gap-stack-md">
-          <div class="border-l border-primary pl-stack-md mb-stack-sm">
-            <span class="font-label-md text-label-md text-primary uppercase tracking-widest">MOST_POPULAR_NODES</span>
-          </div>
-          <!-- Track 1 -->
-          <div class="group flex flex-col border border-outline-variant p-stack-md hover:border-primary transition-colors cursor-default">
-            <div class="flex justify-between items-center mb-1">
-              <span class="font-label-sm text-label-sm text-outline">NODE_AUDIO_01</span>
-              <span class="font-label-sm text-label-sm text-primary">06:45</span>
-            </div>
-            <h4 class="font-body-md text-body-md uppercase font-bold tracking-tight">Voltage Control</h4>
-            <div class="flex gap-stack-md mt-2 pt-2 border-t border-outline-variant/30">
-              <span class="font-label-sm text-label-sm text-outline">145 BPM</span>
-              <span class="font-label-sm text-label-sm text-outline">2024.03.12</span>
-            </div>
-          </div>
-          <!-- Track 2 -->
-          <div class="group flex flex-col border border-outline-variant p-stack-md hover:border-primary transition-colors cursor-default">
-            <div class="flex justify-between items-center mb-1">
-              <span class="font-label-sm text-label-sm text-outline">NODE_AUDIO_02</span>
-              <span class="font-label-sm text-label-sm text-primary">07:12</span>
-            </div>
-            <h4 class="font-body-md text-body-md uppercase font-bold tracking-tight">Acid Rain</h4>
-            <div class="flex gap-stack-md mt-2 pt-2 border-t border-outline-variant/30">
-              <span class="font-label-sm text-label-sm text-outline">156 BPM</span>
-              <span class="font-label-sm text-label-sm text-outline">2024.05.22</span>
-            </div>
-          </div>
-          <!-- Track 3 -->
-          <div class="group flex flex-col border border-outline-variant p-stack-md hover:border-primary transition-colors cursor-default">
-            <div class="flex justify-between items-center mb-1">
-              <span class="font-label-sm text-label-sm text-outline">NODE_AUDIO_03</span>
-              <span class="font-label-sm text-label-sm text-primary">05:58</span>
-            </div>
-            <h4 class="font-body-md text-body-md uppercase font-bold tracking-tight">Deep Shift</h4>
-            <div class="flex gap-stack-md mt-2 pt-2 border-t border-outline-variant/30">
-              <span class="font-label-sm text-label-sm text-outline">152 BPM</span>
-              <span class="font-label-sm text-label-sm text-outline">2023.12.10</span>
-            </div>
-          </div>
-          <!-- Track 4 -->
-          <div class="group flex flex-col border border-outline-variant p-stack-md hover:border-primary transition-colors cursor-default">
-            <div class="flex justify-between items-center mb-1">
-              <span class="font-label-sm text-label-sm text-outline">NODE_AUDIO_04</span>
-              <span class="font-label-sm text-label-sm text-primary">08:12</span>
-            </div>
-            <h4 class="font-body-md text-body-md uppercase font-bold tracking-tight">Monolith Ambience v2</h4>
-            <div class="flex gap-stack-md mt-2 pt-2 border-t border-outline-variant/30">
-              <span class="font-label-sm text-label-sm text-outline">132 BPM</span>
-              <span class="font-label-sm text-label-sm text-outline">2023.08.05</span>
-            </div>
+          <div class="mt-4 pt-2 border-t border-outline-variant/30 flex justify-between items-center">
+            <span class="font-label-sm text-label-sm text-outline uppercase">EVENT_STATUS</span>
+            <span class="font-label-sm text-label-sm text-primary font-bold">STABLE_TRANSMISSION</span>
           </div>
         </div>
       </div>
