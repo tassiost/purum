@@ -212,14 +212,14 @@
     <!-- About Section -->
     <section class="px-margin-desktop py-section-gap border-t border-outline-variant" id="about">
       <div class="grid grid-cols-1 gap-gutter items-start lg:grid-cols-2">
-        <div class="lg:col-span-1">
-          <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight leading-none mb-stack-lg text-primary font-bold">PROJECT_MANIFESTO //</h3>
-        </div>
-        <div class="lg:col-span-1">
-          <p class="font-body-lg text-body-lg text-on-surface leading-relaxed max-w-3xl border-l-2 border-primary pl-6">
+        <div class="flex flex-col gap-stack-lg">
+          <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight leading-none text-primary font-bold">PROJECT_MANIFESTO //</h3>
+          <p class="font-body-lg text-body-lg text-on-surface leading-relaxed border-l-2 border-primary pl-6">
             <%= settings.biography %>
           </p>
-          <p class="font-body-lg text-body-lg text-secondary mt-stack-md leading-relaxed max-w-3xl">
+        </div>
+        <div class="lg:pt-14">
+          <p class="font-body-lg text-body-lg text-secondary leading-relaxed">
             <%= settings.artistStatement %>
           </p>
         </div>
