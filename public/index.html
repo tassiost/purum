@@ -147,7 +147,6 @@
       <a class="font-label-md text-label-md uppercase tracking-widest text-primary border-b border-primary pb-1" href="#home">HOME</a>
       <a class="font-label-md text-label-md uppercase tracking-widest text-outline hover:text-primary transition-none" href="#about">ABOUT</a>
       <a class="font-label-md text-label-md uppercase tracking-widest text-outline hover:text-primary transition-none" href="#archives">ARCHIVES</a>
-      <a class="font-label-md text-label-md uppercase tracking-widest text-outline hover:text-primary transition-none" href="#audio">AUDIO</a>
     </div>
     
     <!-- Mobile Menu Trigger -->
@@ -161,7 +160,6 @@
     <a class="font-label-md text-label-md uppercase text-primary" href="#home" onclick="toggleMobileMenu()">HOME</a>
     <a class="font-label-md text-label-md uppercase text-outline" href="#about" onclick="toggleMobileMenu()">ABOUT</a>
     <a class="font-label-md text-label-md uppercase text-outline" href="#archives" onclick="toggleMobileMenu()">ARCHIVES</a>
-    <a class="font-label-md text-label-md uppercase text-outline" href="#audio" onclick="toggleMobileMenu()">AUDIO</a>
   </div>
   
   <main class="mt-24">
@@ -275,11 +273,10 @@
     </div>
     <div class="flex gap-margin-mobile">
       <a class="font-label-sm text-label-sm text-outline hover:text-primary transition-colors" href="#">PRIVACY</a>
-      <a class="font-label-sm text-label-sm text-outline hover:text-primary transition-colors" href="#">IMPRINT</a>
       <a class="font-label-sm text-label-sm text-outline hover:text-primary transition-colors" href="mailto:purumbooking@gmail.com">CONTACT</a>
     </div>
     <div class="flex gap-stack-md mt-stack-lg md:mt-0">
-      <a class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-none" href="#">
+      <a href="#" onclick="shareWebsite(event)" class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-none" title="SHARE">
         <span class="material-symbols-outlined text-[18px]">share</span>
       </a>
       <a class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-none" href="#">
@@ -370,6 +367,24 @@
       const menu = document.getElementById('mobile-menu');
       if (menu) {
         menu.classList.toggle('hidden');
+      }
+    }
+
+    // Share Website handler
+    function shareWebsite(e) {
+      e.preventDefault();
+      if (navigator.share) {
+        navigator.share({
+          title: 'PURUM | BERN // SWITZERLAND',
+          text: 'Check out PURUM - Groove-focused techno, house and chaotic energy.',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          alert('WEBSITE LINK COPIED TO CLIPBOARD');
+        }).catch(err => {
+          console.error('Could not copy text: ', err);
+        });
       }
     }
   </script>
