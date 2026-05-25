@@ -570,10 +570,10 @@
       // 2. Play / Pause Control Toggle
       playBtn.addEventListener('click', () => {
         if (audio.paused) {
-          // Resume the iframe's Three.js AudioContext from the parent page on user gesture
+          // Resume the iframe's Web AudioContext on user gesture to unfreeze progress tracking
           try {
-            if (bgIframe && bgIframe.contentWindow && bgIframe.contentWindow.THREE && bgIframe.contentWindow.THREE.AudioContext) {
-              bgIframe.contentWindow.THREE.AudioContext.getContext().resume();
+            if (bgIframe && bgIframe.contentWindow && bgIframe.contentWindow.audioContext) {
+              bgIframe.contentWindow.audioContext.resume();
             }
           } catch (err) {
             console.error('Error resuming iframe AudioContext:', err);
