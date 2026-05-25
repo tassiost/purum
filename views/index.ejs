@@ -188,6 +188,9 @@
   </style>
 </head>
 <body class="antialiased overflow-x-hidden">
+  <!-- Interactive Particles Music Visualizer Background -->
+  <iframe src="/visualizer/index.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: -10; opacity: 0.35;" aria-hidden="true"></iframe>
+
   <div class="grain-overlay"></div>
   
   <!-- Top Navigation Shell -->
@@ -412,7 +415,12 @@
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        colorImg.style.clipPath = `circle(110px at ${x}px ${y}px)`;
+        
+        // Add a bit of random distortion (analog lens static wiggle!)
+        const randomX = (Math.random() - 0.5) * 8;
+        const randomY = (Math.random() - 0.5) * 8;
+        
+        colorImg.style.clipPath = `circle(110px at ${x + randomX}px ${y + randomY}px)`;
         
         // Dynamic position of the radar target reticle
         const sight = container.querySelector('.scan-sight');
