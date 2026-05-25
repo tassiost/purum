@@ -131,8 +131,50 @@
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .color-layer {
-      filter: url(#spotlight-shader);
       will-change: clip-path;
+    }
+    .scan-sight {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50% !important;
+      pointer-events: none;
+      z-index: 30;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+    }
+    .spotlight-container:hover .scan-sight {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .scan-sight::before, .scan-sight::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.3);
+      pointer-events: none;
+    }
+    .scan-sight::before {
+      top: 50%; left: 15px; right: 15px; height: 1px;
+    }
+    .scan-sight::after {
+      left: 50%; top: 15px; bottom: 15px; width: 1px;
+    }
+    @keyframes sweep {
+      0% { top: 15%; opacity: 0; }
+      15% { opacity: 0.8; }
+      85% { opacity: 0.8; }
+      100% { top: 85%; opacity: 0; }
+    }
+    .scan-laser {
+      position: absolute;
+      left: 15%; right: 15%; height: 1px;
+      background: linear-gradient(90deg, transparent, #ffffff, transparent);
+      box-shadow: 0 0 6px #ffffff;
+      pointer-events: none;
+      animation: sweep 1.8s infinite linear;
     }
     .glitch-hover:hover {
       text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
@@ -211,6 +253,8 @@
         <img alt="<%= settings.artistName %> Portrait" class="w-full h-full object-cover object-top grayscale brightness-90 contrast-110 z-0 relative pointer-events-none" src="<%= settings.profilePicture %>"/>
         <!-- Color Overlay Image -->
         <img alt="<%= settings.artistName %> Portrait Color" class="color-layer absolute inset-0 w-full h-full object-cover object-top brightness-100 contrast-100 z-10 pointer-events-none" src="<%= settings.profilePicture %>" style="clip-path: circle(0px at 0px 0px);"/>
+        <!-- Radar Scanning Reticle -->
+        <div class="scan-sight" style="left: 0px; top: 0px;"><div class="scan-laser"></div></div>
       </div>
     </section>
 
@@ -369,6 +413,13 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         colorImg.style.clipPath = `circle(110px at ${x}px ${y}px)`;
+        
+        // Dynamic position of the radar target reticle
+        const sight = container.querySelector('.scan-sight');
+        if (sight) {
+          sight.style.left = `${x}px`;
+          sight.style.top = `${y}px`;
+        }
         targetScale = 25;
       });
 
