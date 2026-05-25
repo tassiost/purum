@@ -151,10 +151,18 @@
     </div>
     
     <!-- Mobile Menu Trigger -->
-    <button class="md:hidden text-primary">
+    <button class="md:hidden text-primary" onclick="toggleMobileMenu()">
       <span class="material-symbols-outlined">menu</span>
     </button>
   </nav>
+
+  <!-- Mobile Nav Dropdown -->
+  <div id="mobile-menu" class="hidden fixed top-24 left-0 w-full bg-surface border-b border-outline-variant z-40 flex flex-col p-6 gap-4 md:hidden">
+    <a class="font-label-md text-label-md uppercase text-primary" href="#home" onclick="toggleMobileMenu()">HOME</a>
+    <a class="font-label-md text-label-md uppercase text-outline" href="#about" onclick="toggleMobileMenu()">ABOUT</a>
+    <a class="font-label-md text-label-md uppercase text-outline" href="#archives" onclick="toggleMobileMenu()">ARCHIVES</a>
+    <a class="font-label-md text-label-md uppercase text-outline" href="#audio" onclick="toggleMobileMenu()">AUDIO</a>
+  </div>
   
   <main class="mt-24">
     <!-- Hero Section -->
@@ -191,7 +199,7 @@
 
     <!-- About Section -->
     <section class="px-margin-desktop py-section-gap border-t border-outline-variant" id="about">
-      <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight leading-none text-primary font-bold mb-stack-lg">PROJECT_MANIFESTO</h3>
+      <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight leading-none text-primary font-bold mb-stack-lg">PROJECT_MANIFESTO</h3>
       <div class="grid grid-cols-1 gap-gutter items-start lg:grid-cols-2 mt-8">
         <p class="font-body-lg text-body-lg text-on-surface leading-relaxed border-l-2 border-primary pl-6">
           Purum is a Bern-based DJ moving somewhere between groove-focused techno, house and chaotic late-night energy. His sets are built around tension, rhythm and unexpected turns — mixing hardgroove drums, old vocals, strange samples and hypnotic loops into something fast, raw and slightly surreal.
@@ -205,7 +213,7 @@
     <!-- System Archives (Gallery) -->
     <section class="px-margin-desktop py-section-gap bg-surface-container-lowest border-t border-b border-outline-variant" id="archives">
       <div class="flex justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
-        <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">SYSTEM ARCHIVES</h3>
+        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">SYSTEM ARCHIVES</h3>
         <span class="font-label-md text-label-md text-outline">VINTAGE_CULTURE_SYS_042</span>
       </div>
       <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -221,7 +229,7 @@
     <!-- Audio Transmissions Section -->
     <section class="px-margin-desktop py-section-gap border-t border-outline-variant" id="audio">
       <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
-        <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">Transmissions / Audio</h3>
+        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">Transmissions / Audio</h3>
         <span class="font-label-md text-label-md text-outline">STREAM_LINK_STABLE</span>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
@@ -266,7 +274,7 @@
     <!-- Affiliation & Events Section -->
     <section class="px-margin-desktop py-section-gap border-t border-outline-variant" id="events">
       <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
-        <h3 class="font-headline-lg text-headline-lg uppercase tracking-tight">Label &amp; Events</h3>
+        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">Label &amp; Events</h3>
         <span class="font-label-md text-label-md text-outline">YAKU.RECORDS_SYS</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mt-8">
@@ -311,8 +319,8 @@
   <!-- Footer Shell -->
   <footer class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg mt-section-gap w-full border-t border-outline-variant bg-surface">
     <div class="flex flex-col gap-stack-sm mb-stack-lg md:mb-0">
-      <span class="font-label-md text-label-md text-primary uppercase tracking-widest">MONOLITH INDUSTRIAL SYSTEMS</span>
-      <p class="font-label-sm text-label-sm text-outline">©2024 PURUM. ALL RIGHTS RESERVED.</p>
+      <span class="font-label-md text-label-md text-primary uppercase tracking-widest">PURUM SYSTEMS</span>
+      <p class="font-label-sm text-label-sm text-outline">©2026 PURUM. ALL RIGHTS RESERVED.</p>
     </div>
     <div class="flex gap-margin-mobile">
       <a class="font-label-sm text-label-sm text-outline hover:text-primary transition-colors" href="#">PRIVACY</a>
@@ -366,6 +374,14 @@
         el.style.opacity = '1';
       });
     });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) {
+        menu.classList.toggle('hidden');
+      }
+    }
   </script>
 </body>
 </html>
