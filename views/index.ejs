@@ -619,7 +619,7 @@
       const barsContainer = document.getElementById('waveform-bars');
       for (let i = 0; i < 55; i++) {
         const bar = document.createElement('div');
-        bar.className = 'waveform-bar w-[2px] md:w-[3px] flex-shrink-0 bg-white/20 transition-colors pointer-events-none';
+        bar.className = 'waveform-bar flex-grow bg-white/20 transition-colors pointer-events-none';
         bar.style.height = `${heights[i]}%`;
         if (barsContainer) barsContainer.appendChild(bar);
       }
