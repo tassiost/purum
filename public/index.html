@@ -276,7 +276,7 @@
           <h2 class="font-label-md text-label-md uppercase tracking-[0.3em] mb-stack-md text-outline">BERN // SWITZERLAND</h2>
           
           <!-- Custom Bespoke Brutalist Audio Player (SoundCloud replica, Web Audio reactiveness) -->
-          <div class="w-full bg-[#0c0c0c] border border-outline-variant/50 p-[1rem] flex gap-[1rem] select-none relative mb-[2rem]" style="box-shadow: 0 0 1.25rem rgba(0,0,0,0.5);">
+          <div class="w-full bg-[#0c0c0c] border border-outline-variant/50 p-[1rem] flex gap-[1rem] select-none relative mb-[2rem] overflow-hidden" style="box-shadow: 0 0 1.25rem rgba(0,0,0,0.5);">
             <!-- Native Audio Node (CORS-safe) -->
             <audio id="hero-audio" crossorigin="anonymous" src="/audio/mas_que_nada.mp3"></audio>
 
@@ -595,7 +595,7 @@
       const barsContainer = document.getElementById('waveform-bars');
       for (let i = 0; i < 55; i++) {
         const bar = document.createElement('div');
-        bar.className = 'waveform-bar flex-grow bg-white/20 transition-colors pointer-events-none';
+        bar.className = 'waveform-bar w-[2px] md:w-[3px] flex-shrink-0 bg-white/20 transition-colors pointer-events-none';
         bar.style.height = `${heights[i]}%`;
         if (barsContainer) barsContainer.appendChild(bar);
       }
