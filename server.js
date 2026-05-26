@@ -96,11 +96,63 @@ const authMiddleware = require('./middleware/auth');
 // Homepage: load and show portfolio artworks
 app.get('/', (req, res) => {
   const artworks = readJSON('portfolio.json');
+  
+  // Dynamically scan public/audio folder for available audio releases
+  const audioDir = path.join(__dirname, 'public', 'audio');
+  let tracks = [];
+  if (fs.existsSync(audioDir)) {
+    const files = fs.readdirSync(audioDir);
+    tracks = files
+      .filter(file => file.endsWith('.mp3') || file.endsWith('.wav'))
+      .map((file, idx) => {
+        let cleanTitle = file
+          .replace(/\.[^/.]+$/, "") // remove extension
+          .replace(/[_-]/g, " ")   // replace separators with spaces
+          .replace(/\s+/g, " ")    // collapse extra whitespace
+          .trim()
+          .toUpperCase();
+        
+        return {
+          id: 'track-' + idx,
+          title: cleanTitle,
+          src: '/audio/' + file,
+          cover: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCQADr8VQ0Xtw8fyMJPHVu1ach2BPE1MCOIwl0Lvkh0gC48VTf4mXXjOt9EhEXkUqQjBxXA05kwsz9hKbhK0dt_-ZHTDvvKb-jNVobsBJuaHTggjbGWkp0fQVSvN6OYLf8BA2ekDssrx_6LUG0lrpbqE39mxorW5PzsKyt2TcyCpcaljniracTTX34VCAbU8Dpawv5IV_SNDoDsHqN-Ya4s22PTvgzYtCTVloyISs2c6HGmn_gWKtrwhzKrAlIBuCTljDAVfHLr6pI=s1200'
+        };
+      });
+  }
+
   res.render('index', {
     title: 'WORK',
     activePage: 'home',
-    artworks: artworks
+    artworks: artworks,
+    tracks: tracks
   });
+});
+
+// API Route: Get dynamic scanned tracks list (CORS-safe)
+app.get('/api/tracks', (req, res) => {
+  const audioDir = path.join(__dirname, 'public', 'audio');
+  let tracks = [];
+  if (fs.existsSync(audioDir)) {
+    const files = fs.readdirSync(audioDir);
+    tracks = files
+      .filter(file => file.endsWith('.mp3') || file.endsWith('.wav'))
+      .map((file, idx) => {
+        let cleanTitle = file
+          .replace(/\.[^/.]+$/, "")
+          .replace(/[_-]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+          .toUpperCase();
+        
+        return {
+          id: 'track-' + idx,
+          title: cleanTitle,
+          src: '/audio/' + file
+        };
+      });
+  }
+  res.json(tracks);
 });
 
 // Artwork detail view

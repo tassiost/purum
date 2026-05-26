@@ -357,6 +357,9 @@
             </div>
           </div>
 
+          <!-- Dynamic playlist is injected here by API response when multiple files are found -->
+          <div id="dynamic-playlist-box" class="w-full"></div>
+
           <div class="flex flex-col gap-4">
             <a class="font-label-md text-[10px] sm:text-label-md text-primary tracking-[0.2em] hover:tracking-[0.3em] transition-all duration-300" href="mailto:purumbooking@gmail.com">BOOKING: PURUMBOOKING@GMAIL.COM ———</a>
           </div>
@@ -734,6 +737,105 @@
           playhead.style.left = '0%';
         }
       });
+
+      // =========================================================================
+      // DYNAMIC EP PLAYLIST SWITCHER ENGINE (Scans folder tracks dynamically)
+      // =========================================================================
+      let playlist = [];
+      let currentTrackIndex = 0;
+
+      fetch('/api/tracks')
+        .then(res => res.json())
+        .then(tracks => {
+          if (!tracks || tracks.length <= 1) return;
+          playlist = tracks;
+          
+          // Render playlist HTML dynamically!
+          const playlistBox = document.getElementById('dynamic-playlist-box');
+          if (playlistBox) {
+            playlistBox.innerHTML = `
+              <!-- Dynamic EP Playlist -->
+              <div class="w-full border border-outline-variant/30 p-[1rem] bg-[#080808]/90 mb-[2rem] flex flex-col gap-[0.75rem]">
+                <div class="flex justify-between items-center border-b border-outline-variant/20 pb-[0.5rem] select-none">
+                  <span class="font-label-sm text-[10px] text-primary uppercase tracking-wider text-outline">EP_PLAYLIST_SYS // CURRENT_RELEASES</span>
+                  <span class="font-label-sm text-[10px] text-outline">SYS_UNIT_042</span>
+                </div>
+                <div class="flex flex-col gap-[0.25rem] font-mono text-[10px] select-none">
+                  <div class="grid grid-cols-12 border-b border-outline-variant/10 pb-[0.25rem] text-outline uppercase">
+                    <div class="col-span-2">ID</div>
+                    <div class="col-span-10">TRACK_NAME</div>
+                  </div>
+                  <div id="playlist-container" class="flex flex-col gap-[0.25rem] max-h-[160px] overflow-y-auto">
+                    \${tracks.map((track, index) => \`
+                      <div class="playlist-row grid grid-cols-12 py-[0.25rem] border-b border-outline-variant/5 hover:bg-white/5 cursor-crosshair transition-colors \${index === 0 ? 'bg-white/5' : ''}" data-track-index="\${index}">
+                        <div class="col-span-2 \${index === 0 ? 'text-primary font-bold' : 'text-outline'}">\${(index + 1).toString().padStart(2, '0')}</div>
+                        <div class="col-span-10 \${index === 0 ? 'text-primary font-bold' : 'text-outline'}">\${track.title}</div>
+                      </div>
+                    \`).join('')}
+                  </div>
+                </div>
+              </div>
+            `;
+            
+            // Re-bind row click event listeners
+            const rows = playlistBox.querySelectorAll('.playlist-row');
+            rows.forEach(row => {
+              row.addEventListener('click', () => {
+                const index = parseInt(row.getAttribute('data-track-index'));
+                loadTrack(index, rows);
+              });
+            });
+          }
+        })
+        .catch(err => console.error('Error loading tracks:', err));
+
+      function loadTrack(index, rows) {
+        if (!playlist || playlist.length <= 1) return;
+        
+        currentTrackIndex = index;
+        const track = playlist[index];
+        
+        // Pause and load new source file
+        audio.pause();
+        audio.src = track.src;
+        audio.load();
+        
+        // Reset and rebuild player details
+        document.getElementById('player-title').innerText = track.title;
+        if (playhead) {
+          playhead.style.left = '0%';
+        }
+        timeCurrent.innerText = '0:00';
+        timeCurrent.style.left = '0%';
+        
+        // Highlight selected row in playlist
+        rows.forEach((r, idx) => {
+          const idEl = r.querySelector('.col-span-2');
+          const titleEl = r.querySelector('.col-span-10');
+          if (idx === index) {
+            r.classList.add('bg-white/5');
+            if (idEl) idEl.className = 'col-span-2 text-primary font-bold';
+            if (titleEl) titleEl.className = 'col-span-10 text-primary font-bold';
+          } else {
+            r.classList.remove('bg-white/5');
+            if (idEl) idEl.className = 'col-span-2 text-outline';
+            if (titleEl) titleEl.className = 'col-span-10 text-outline';
+          }
+        });
+        
+        // Rebuild waveforms
+        setTimeout(() => {
+          renderWaveform();
+        }, 100);
+        
+        // Autoplay the switched track
+        audio.play().then(() => {
+          playIcon.innerText = 'pause';
+          if (bgIframe && bgIframe.contentWindow) {
+            bgIframe.contentWindow.postMessage({ type: 'SC_PLAY' }, '*');
+          }
+        }).catch(err => console.log('Autoplay blocked:', err));
+      }
     });
   </script>
   <!-- Hidden SVG displacement map filter (spotlight liquid shader) -->
