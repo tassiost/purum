@@ -41,6 +41,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'), {
   setHeaders: function (res, path, stat) {
     res.set('Access-Control-Allow-Origin', '*');
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
   }
 }));
 app.use(session({
