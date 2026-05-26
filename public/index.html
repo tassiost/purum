@@ -286,10 +286,21 @@
               <a href="https://soundcloud.com/purumofficial" target="_blank" class="absolute bottom-[0.25rem] left-[0.25rem] font-label-sm text-[0.5rem] text-outline hover:text-primary leading-none bg-black/60 px-[0.25rem] py-[0.125rem]">Privacy policy</a>
             </div>
 
-            <!-- Right: Play & Waveform (Perfectly contained flexbox layout, no right overflow) -->
-            <div class="flex-grow flex flex-col justify-between py-[0.0625rem] pr-2">
+          <!-- Custom Bespoke Brutalist Audio Player (SoundCloud replica, Web Audio reactiveness) -->
+          <div class="w-full bg-[#0c0c0c] border border-outline-variant/50 p-[1rem] flex flex-col md:flex-row gap-[1rem] select-none relative mb-[2rem] overflow-hidden" style="box-shadow: 0 0 1.25rem rgba(0,0,0,0.5);">
+            <!-- Native Audio Node (CORS-safe) -->
+            <audio id="hero-audio" crossorigin="anonymous" src="/audio/mas_que_nada.mp3"></audio>
+
+            <!-- Left: Cover Art (Responsive size, full-width mobile, 9.375rem square desktop) -->
+            <div class="w-full h-[200px] md:w-[9.375rem] md:h-[9.375rem] flex-shrink-0 relative border border-outline-variant/30">
+              <img id="player-cover" alt="Cover Art" class="w-full h-full object-cover grayscale brightness-90 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQADr8VQ0Xtw8fyMJPHVu1ach2BPE1MCOIwl0Lvkh0gC48VTf4mXXjOt9EhEXkUqQjBxXA05kwsz9hKbhK0dt_-ZHTDvvKb-jNVobsBJuaHTggjbGWkp0fQVSvN6OYLf8BA2ekDssrx_6LUG0lrpbqE39mxorW5PzsKyt2TcyCpcaljniracTTX34VCAbU8Dpawv5IV_SNDoDsHqN-Ya4s22PTvgzYtCTVloyISs2c6HGmn_gWKtrwhzKrAlIBuCTljDAVfHLr6pI=s1200"/>
+              <a href="https://soundcloud.com/purumofficial" target="_blank" class="absolute bottom-[0.25rem] left-[0.25rem] font-label-sm text-[0.5rem] text-outline hover:text-primary leading-none bg-black/60 px-[0.25rem] py-[0.125rem]">Privacy policy</a>
+            </div>
+
+            <!-- Right: Play & Waveform -->
+            <div class="flex-grow flex flex-col justify-between py-[0.0625rem] pr-0 md:pr-[3.5rem] relative min-w-0">
               <!-- Top Metadata & Social Row -->
-              <div class="flex justify-between items-start gap-[0.5rem]">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-[0.5rem]">
                 <div class="flex items-center gap-[0.75rem]">
                   <!-- Play / Pause Button -->
                   <button id="player-play-btn" class="w-[3rem] h-[3rem] rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform active:scale-95 cursor-crosshair">
@@ -321,13 +332,13 @@
                     <div id="player-time-current" class="absolute bottom-[0.125rem] left-0 font-label-sm text-[0.5625rem] text-[#808080] pointer-events-none select-none z-20">0:00</div>
                   </div>
                 </div>
-                <!-- Total duration badge (standard flex child, perfectly placed!) -->
-                <div id="player-time-total" class="font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
+                <!-- Total duration badge (standard flex child on mobile, absolute right offset on desktop!) -->
+                <div id="player-time-total" class="relative md:absolute bottom-[0.125rem] right-0 md:right-[-3rem] font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
               </div>
 
               <!-- Bottom Row: Plays counts -->
-              <div class="flex justify-end items-center text-outline mt-[0.25rem] text-[0.625rem] pr-2">
-                <span class="flex items-center gap-[0.0625rem] font-label-sm text-[0.5625rem]"><span class="material-symbols-outlined text-[10px]">play_arrow</span> 28</span>
+              <div class="flex justify-end items-center text-outline mt-[0.25rem] text-[0.625rem] relative pr-2">
+                <span class="relative md:absolute right-0 md:right-[-3rem] flex items-center gap-[0.0625rem] font-label-sm text-[0.5625rem]"><span class="material-symbols-outlined text-[10px]">play_arrow</span> 28</span>
               </div>
             </div>
           </div>
