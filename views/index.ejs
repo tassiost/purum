@@ -343,13 +343,18 @@
 
               <!-- Mid: Waveform Visualizer & Duration -->
               <div class="flex items-end gap-3 mt-[0.5rem] h-[3.75rem] relative pr-2">
-                <div id="waveform-container" class="relative flex-grow h-full flex items-end gap-[0.0625rem] cursor-crosshair group">
-                  <div id="waveform-bars" class="absolute inset-y-0 left-0 right-0 flex items-end gap-[0.0625rem] pointer-events-none">
-                    <!-- Vertical Playhead Line -->
-                    <div id="player-playhead" class="absolute top-0 bottom-0 w-[2px] bg-white pointer-events-none z-10" style="left: 0%;"></div>
-                    <!-- Floating current timecode -->
-                    <div id="player-time-current" class="absolute bottom-[0.125rem] left-0 font-label-sm text-[0.5625rem] text-[#808080] pointer-events-none select-none z-20">0:00</div>
-                  </div>
+                <!-- Relative Waveform Wrapper (Stops 3.5rem before right edge!) -->
+                <div id="waveform-container" class="relative flex-grow h-full mr-[3.5rem] cursor-crosshair group">
+                  <!-- The flex bars container (fills the parent 100%) -->
+                  <div id="waveform-bars" class="absolute inset-0 flex items-end gap-[0.0625rem] pointer-events-none"></div>
+                  <!-- Vertical Playhead Line (relative to the active bars width!) -->
+                  <div id="player-playhead" class="absolute top-0 bottom-0 w-[2px] bg-white pointer-events-none z-10 transition-all duration-75" style="left: 0%;"></div>
+                  <!-- Floating current timecode -->
+                  <div id="player-time-current" class="absolute bottom-[0.125rem] left-0 font-label-sm text-[0.5625rem] text-[#808080] pointer-events-none select-none z-20 transition-all duration-75" style="left: 0%;">0:00</div>
+                </div>
+                <!-- Total duration badge (standard flex child, perfectly placed!) -->
+                <div id="player-time-total" class="font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
+              </div>
                 </div>
                 <!-- Total duration badge (standard flex child on mobile, absolute right offset on desktop!) -->
                 <div id="player-time-total" class="relative md:absolute bottom-[0.125rem] right-0 md:right-[-3rem] font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
