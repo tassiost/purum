@@ -586,19 +586,54 @@
       
       if (!audio || !playBtn || !waveform) return;
 
-      // 1. Generate 55 static wave bars mimicking a real techno waveform
-      const heights = [
-        15, 25, 30, 45, 35, 20, 10, 25, 40, 50, 60, 45, 30, 15, 20, 35, 45, 55, 65, 50, 
-        40, 30, 20, 10, 25, 35, 45, 50, 40, 30, 15, 25, 30, 40, 55, 65, 75, 70, 55, 
-        45, 35, 25, 10, 20, 35, 50, 60, 55, 40, 30, 15, 20, 35, 50, 40
-      ];
-      const barsContainer = document.getElementById('waveform-bars');
-      for (let i = 0; i < 55; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'waveform-bar flex-grow bg-white/20 transition-colors pointer-events-none';
-        bar.style.height = `${heights[i]}%`;
-        if (barsContainer) barsContainer.appendChild(bar);
+      // 1. Dynamic Waveform Generation (Recalculates based on actual pixel width!)
+      function renderWaveform() {
+        const barsContainer = document.getElementById('waveform-bars');
+        if (!barsContainer) return;
+        barsContainer.innerHTML = '';
+        
+        const width = barsContainer.getBoundingClientRect().width;
+        if (width <= 0) return;
+        
+        const barWidth = 3;
+        const gap = 1;
+        const numBars = Math.floor(width / (barWidth + gap));
+        
+        // Generate pseudo-random organic masterwave heights
+        for (let i = 0; i < numBars; i++) {
+          const bar = document.createElement('div');
+          bar.className = 'waveform-bar w-[3px] bg-white/20 transition-colors pointer-events-none';
+          
+          // Sinusoidal bell-curve combined with organic noise
+          const factor = Math.sin((i / numBars) * Math.PI) * 0.6 + 0.2;
+          const randomHeight = 20 + Math.random() * 60;
+          bar.style.height = `${randomHeight * factor}%`;
+          
+          barsContainer.appendChild(bar);
+        }
+        
+        // Sync played bars highlights if audio is currently playing/seeking
+        syncWaveformHighlights();
       }
+
+      function syncWaveformHighlights() {
+        if (isNaN(audio.duration) || !isFinite(audio.duration) || audio.duration === 0) return;
+        const progress = audio.currentTime / audio.duration;
+        const bars = document.querySelectorAll('.waveform-bar');
+        const barCount = Math.floor(progress * bars.length);
+        
+        bars.forEach((bar, idx) => {
+          if (idx < barCount) {
+            bar.style.backgroundColor = '#ffffff';
+          } else {
+            bar.style.backgroundColor = 'rgba(255, 255, 255, 0.20)';
+          }
+        });
+      }
+
+      // Initial render & window resize handler (perfectly responsive!)
+      renderWaveform();
+      window.addEventListener('resize', renderWaveform);
 
       // 1.5 Sync Duration when metadata is loaded
       audio.addEventListener('loadedmetadata', () => {
@@ -606,6 +641,7 @@
         const totMin = Math.floor(audio.duration / 60);
         const totSec = Math.floor(audio.duration % 60).toString().padStart(2, '0');
         document.getElementById('player-time-total').innerText = `${totMin}:${totSec}`;
+        renderWaveform(); // Redraw once metadata is loaded to ensure exact timing sync
       });
 
       // 2. Play / Pause Control Toggle
@@ -638,17 +674,9 @@
       audio.addEventListener('timeupdate', () => {
         if (isNaN(audio.duration) || !isFinite(audio.duration) || audio.duration === 0) return;
         const progress = audio.currentTime / audio.duration;
-        const barCount = Math.floor(progress * 55);
         
         // Highlight active waveform bars
-        const bars = document.querySelectorAll('.waveform-bar');
-        bars.forEach((bar, idx) => {
-          if (idx < barCount) {
-            bar.style.backgroundColor = '#ffffff'; // Stark white (played)
-          } else {
-            bar.style.backgroundColor = 'rgba(255, 255, 255, 0.20)'; // Muted grey (unplayed)
-          }
-        });
+        syncWaveformHighlights();
 
         // Update current playhead line position
         if (playhead) {
