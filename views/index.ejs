@@ -293,14 +293,14 @@
 
   <main class="mt-24">
     <!-- Hero Section -->
-    <section class="grid grid-cols-12 min-h-[90vh] px-margin-mobile md:px-margin-desktop items-center gap-gutter" id="home">
-      <div class="col-span-12 lg:col-span-7 flex flex-col justify-center order-2 lg:order-1 py-stack-lg">
+    <section class="flex flex-col-reverse md:flex-row min-h-[90vh] px-margin-mobile md:px-margin-desktop items-center gap-gutter" id="home">
+      <div class="w-full md:w-[58.333%] flex flex-col justify-center py-stack-lg">
         <div class="overflow-hidden">
           <h1 class="font-headline-xl text-headline-xl uppercase tracking-tighter reveal-text"><%= settings.artistName %></h1>
         </div>
-        <div class="mt-stack-lg max-w-lg">
+        <div class="mt-stack-lg max-w-[32rem]">
           <div class="mb-stack-md flex items-center gap-2 border border-outline-variant/30 w-fit px-2 py-1 bg-surface-container-low">
-            <span class="font-label-sm text-[10px] text-primary">LABEL / AFFILIATION:</span>
+            <span class="font-label-sm text-[10px] text-primary">LABEL_AFFILIATION:</span>
             <span class="font-label-sm text-[10px] text-outline uppercase"><%= settings.affiliation %></span>
           </div>
           <h2 class="font-label-md text-label-md uppercase tracking-[0.3em] mb-stack-md text-outline"><%= settings.location %></h2>
@@ -344,17 +344,13 @@
               <!-- Mid: Waveform Visualizer & Duration -->
               <div class="flex items-end gap-3 mt-[0.5rem] h-[3.75rem] relative pr-2">
                 <!-- Relative Waveform Wrapper (Stops 3.5rem before right edge!) -->
-                <div id="waveform-container" class="relative flex-grow h-full mr-[3.5rem] cursor-crosshair group">
+                <div id="waveform-container" class="relative flex-grow h-full mr-0 cursor-crosshair group">
                   <!-- The flex bars container (fills the parent 100%) -->
                   <div id="waveform-bars" class="absolute inset-0 flex items-end gap-[0.0625rem] pointer-events-none"></div>
                   <!-- Vertical Playhead Line (relative to the active bars width!) -->
                   <div id="player-playhead" class="absolute top-0 bottom-0 w-[2px] bg-white pointer-events-none z-10 transition-all duration-75" style="left: 0%;"></div>
                   <!-- Floating current timecode -->
                   <div id="player-time-current" class="absolute bottom-[0.125rem] left-0 font-label-sm text-[0.5625rem] text-[#808080] pointer-events-none select-none z-20 transition-all duration-75" style="left: 0%;">0:00</div>
-                </div>
-                <!-- Total duration badge (standard flex child, perfectly placed!) -->
-                <div id="player-time-total" class="font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
-              </div>
                 </div>
                 <!-- Total duration badge (standard flex child on mobile, absolute right offset on desktop!) -->
                 <div id="player-time-total" class="relative md:absolute bottom-[0.125rem] right-0 md:right-[-3rem] font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
@@ -365,43 +361,14 @@
                 <span class="relative md:absolute right-0 md:right-[-3rem] flex items-center gap-[0.0625rem] font-label-sm text-[0.5625rem]"><span class="material-symbols-outlined text-[10px]">play_arrow</span> 28</span>
               </div>
             </div>
-                </div>
-                <!-- Social & SC branding -->
-                <div class="flex items-center gap-[0.5rem] text-outline pr-2">
-                  <a href="https://soundcloud.com/purumofficial" target="_blank" class="hover:text-primary transition-colors cursor-crosshair" title="LIKE"><span class="material-symbols-outlined text-[1rem]">favorite</span></a>
-                  <a href="https://soundcloud.com/purumofficial/reason" target="_blank" class="hover:text-primary transition-colors cursor-crosshair" title="DOWNLOAD"><span class="material-symbols-outlined text-[1rem]">download</span></a>
-                  <a href="#" onclick="shareWebsite(event)" class="hover:text-primary transition-colors cursor-crosshair" title="SHARE"><span class="material-symbols-outlined text-[1rem]">share</span></a>
-                  <a href="https://soundcloud.com/purumofficial" target="_blank" class="ml-[0.5rem] hover:text-primary transition-colors" title="SOUNDCLOUD">
-                    <svg class="h-[1rem] w-auto fill-current" viewBox="0 0 24 24"><path d="M12 12.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm1.5.5a.5.5 0 0 1 1 0v2.5a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v2a.5.5 0 0 1-1 0zm2 .5a.5.5 0 0 1 1 0v1.5a.5.5 0 0 1-1 0zm2 .5a.5.5 0 0 1 1 0v1a.5.5 0 0 1-1 0zm-8.5-2a.5.5 0 0 0-.5.5v3.5a.5.5 0 0 0 1 0v-3.5a.5.5 0 0 0-.5-.5zm-1.5 1a.5.5 0 0 0-.5.5v2.5a.5.5 0 0 0 1 0v-2.5a.5.5 0 0 0-.5-.5zm-1.5.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5zm-1.5.5a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0v-1.5a.5.5 0 0 0-.5-.5zm-1.5.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-.5-.5zm-1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-.5-.5zm-1.5-.5a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0v-1.5a.5.5 0 0 0-.5-.5zM1.5 13a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0-.5-.5z"/></svg>
-                  </a>
-                </div>
-              </div>
-
-              <!-- Mid: Waveform Visualizer & Duration -->
-              <div class="flex items-end gap-3 mt-[0.5rem] h-[3.75rem] relative pr-2">
-                <div id="waveform-container" class="relative flex-grow h-full flex items-end gap-[0.0625rem] cursor-crosshair group">
-                  <!-- Vertical Playhead Line -->
-                  <div id="player-playhead" class="absolute top-0 bottom-0 w-[2px] bg-white pointer-events-none z-10" style="left: 0%;"></div>
-                  <!-- Floating current timecode -->
-                  <div id="player-time-current" class="absolute bottom-[0.125rem] left-0 font-label-sm text-[0.5625rem] text-[#808080] pointer-events-none select-none z-20">0:00</div>
-                </div>
-                <!-- Total duration badge (standard flex child, perfectly placed!) -->
-                <div id="player-time-total" class="font-label-sm text-[0.5625rem] text-black bg-white px-[0.25rem] py-[0.125rem] font-bold select-none mb-[0.125rem] z-20">4:47</div>
-              </div>
-
-              <!-- Bottom Row: Plays counts -->
-              <div class="flex justify-end items-center text-outline mt-[0.25rem] text-[0.625rem] pr-2">
-                <span class="flex items-center gap-[0.0625rem] font-label-sm text-[0.5625rem]"><span class="material-symbols-outlined text-[10px]">play_arrow</span> 28</span>
-              </div>
-            </div>
           </div>
 
           <div class="flex flex-col gap-4">
-            <a class="font-label-md text-label-md text-primary tracking-[0.2em] hover:tracking-[0.3em] transition-all duration-300" href="mailto:<%= settings.contactEmail %>">BOOKING: <%= settings.contactEmail.toUpperCase() %> ———</a>
+            <a class="font-label-md text-[10px] sm:text-label-md text-primary tracking-[0.2em] hover:tracking-[0.3em] transition-all duration-300" href="mailto:<%= settings.contactEmail %>">BOOKING: <%= settings.contactEmail.toUpperCase() %> ———</a>
           </div>
         </div>
       </div>
-      <div class="col-span-12 lg:col-span-5 relative order-1 lg:order-2 h-[60vh] lg:h-[80vh] border border-outline-variant overflow-hidden spotlight-container cursor-crosshair">
+      <div class="w-full md:w-[41.667%] relative h-[60vh] md:h-[80vh] border border-outline-variant overflow-hidden spotlight-container cursor-crosshair">
         <!-- Gray Base Image -->
         <img alt="<%= settings.artistName %> Portrait" class="w-full h-full object-cover object-top grayscale brightness-90 contrast-110 z-0 relative pointer-events-none" src="<%= settings.profilePicture %>"/>
         <!-- Color Overlay Image -->
@@ -426,8 +393,8 @@
 
     <!-- System Archives (Gallery) -->
     <section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-surface-container-lowest border-t border-b border-outline-variant" id="archives">
-      <div class="flex justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
-        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">SYSTEM ARCHIVES</h3>
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-outline-variant pb-stack-md mb-stack-lg gap-2">
+        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">SYSTEM_ARCHIVES</h3>
         <span class="font-label-md text-label-md text-outline">VINTAGE_CULTURE_SYS_042</span>
       </div>
       <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -454,8 +421,8 @@
 
     <!-- Affiliation Section -->
     <section class="px-margin-mobile md:px-margin-desktop py-section-gap border-t border-outline-variant" id="events">
-      <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-stack-md mb-stack-lg">
-        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">Label Affiliation</h3>
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-outline-variant pb-stack-md mb-stack-lg gap-2">
+        <h3 class="font-headline-lg text-[28px] sm:text-[32px] md:text-headline-lg uppercase tracking-tight">LABEL_AFFILIATION</h3>
         <span class="font-label-md text-label-md text-outline">YAKU.RECORDS_SYS</span>
       </div>
       <div class="mt-8">
@@ -501,14 +468,6 @@
   <!-- Fixed Technical Telemetry (Brutalist UX Accent) -->
   <div class="fixed bottom-4 left-6 md:left-16 font-label-sm text-[10px] text-outline z-50 pointer-events-none hidden lg:block select-none opacity-60 uppercase tracking-widest">
     GRID_NODE: X:<span id="coord-x">0000</span>_Y:<span id="coord-y">0000</span> // TEMP: <span id="telemetry-bpm">142</span>_BPM
-  </div>
-
-  <!-- Cookie Consent Placeholder -->
-  <div class="fixed bottom-margin-mobile right-margin-mobile z-[100] max-w-xs bg-surface-container-highest border border-outline-variant p-stack-md shadow-2xl transition-all duration-500" id="cookie-consent">
-    <p class="font-body-md text-body-md text-on-surface mb-stack-md">PURUM uses cookies to ensure structural integrity and experience tracking.</p>
-    <button class="w-full bg-primary text-on-primary py-stack-sm font-label-md text-label-md uppercase" onclick="this.closest('#cookie-consent').style.display='none'">
-      ACKNOWLEDGE
-    </button>
   </div>
 
   <script>
